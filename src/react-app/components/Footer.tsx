@@ -136,7 +136,7 @@ export default function Footer() {
           
           <div className="mt-6 text-center">
             <p className="text-olive/60 text-sm">
-              Premium Mehndi Artist serving Mumbai and surrounding areas with love and artistry
+              professional Mehndi Artist serving Mumbai and surrounding areas with love and artistry
             </p>
           </div>
         </motion.div>

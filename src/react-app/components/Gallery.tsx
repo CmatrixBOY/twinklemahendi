@@ -71,6 +71,7 @@ export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedDesign, setSelectedDesign] = useState<typeof designs[0] | null>(null);
   const [likedDesigns, setLikedDesigns] = useState<number[]>([]);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const filteredDesigns = selectedCategory === 'All' 
     ? designs 
@@ -91,50 +92,97 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-16 md:py-20 px-4 md:px-6">
-      <div className="container mx-auto">
+    <section id="gallery" className="py-12 md:py-16 lg:py-20 px-3 md:px-4 lg:px-6 mobile-safe">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
         >
-          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-olive mb-4 md:mb-6">
+          <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-olive mb-3 md:mb-4 lg:mb-6 px-2">
             Design Gallery
           </h2>
-          <p className="text-lg text-olive/80 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-olive/80 max-w-2xl mx-auto px-4">
             Explore our collection of exquisite mehndi designs, each crafted with love and attention to detail
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Mobile Category Filter */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12"
+          className="mb-6 md:mb-8 lg:mb-12"
         >
-          {categories.map((category) => (
+          {/* Mobile Filter Toggle */}
+          <div className="md:hidden mb-4">
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-medium transition-all duration-300 text-sm md:text-base ${
-                selectedCategory === category
-                  ? 'bg-pistachio-deep text-olive shadow-lg'
-                  : 'glass glass-hover text-olive'
-              }`}
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="glass glass-hover px-4 py-3 rounded-2xl font-medium text-olive w-full flex items-center justify-between mobile-tap"
             >
-              {category}
+              <span>Category: {selectedCategory}</span>
+              <span className={`transform transition-transform ${showMobileFilters ? 'rotate-180' : ''}`}>
+                ▼
+              </span>
             </button>
-          ))}
+          </div>
+
+          {/* Desktop Filter */}
+          <div className="hidden md:flex flex-wrap justify-center gap-2 lg:gap-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 text-sm lg:text-base mobile-tap ${
+                  selectedCategory === category
+                    ? 'bg-pistachio-deep text-olive shadow-lg'
+                    : 'glass glass-hover text-olive'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Filter Dropdown */}
+          <AnimatePresence>
+            {showMobileFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="md:hidden glass rounded-2xl p-4 mt-2 overflow-hidden"
+              >
+                <div className="grid grid-cols-2 gap-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        setSelectedCategory(category);
+                        setShowMobileFilters(false);
+                      }}
+                      className={`px-3 py-2 rounded-xl font-medium transition-all duration-300 text-sm mobile-tap ${
+                        selectedCategory === category
+                          ? 'bg-pistachio-deep text-olive shadow-lg'
+                          : 'glass glass-hover text-olive'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Design Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-6"
         >
           <AnimatePresence>
             {filteredDesigns.map((design, index) => (
@@ -144,8 +192,8 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass rounded-2xl overflow-hidden glass-hover group"
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="glass rounded-2xl overflow-hidden glass-hover group mobile-tap"
               >
                 <div className="relative aspect-square overflow-hidden">
                   <img
@@ -162,27 +210,27 @@ export default function Gallery() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="absolute top-4 right-4 flex flex-col gap-2">
+                  <div className="absolute top-2 md:top-4 right-2 md:right-4 flex flex-col gap-1 md:gap-2">
                     <button
                       onClick={() => toggleLike(design.id)}
-                      className={`w-10 h-10 rounded-full glass flex items-center justify-center transition-colors ${
+                      className={`w-8 md:w-10 h-8 md:h-10 rounded-full glass flex items-center justify-center transition-colors mobile-tap ${
                         likedDesigns.includes(design.id) ? 'text-red-500' : 'text-olive'
                       }`}
                     >
-                      <Heart size={18} fill={likedDesigns.includes(design.id) ? 'currentColor' : 'none'} />
+                      <Heart size={16} fill={likedDesigns.includes(design.id) ? 'currentColor' : 'none'} />
                     </button>
                     
                     <button
                       onClick={() => setSelectedDesign(design)}
-                      className="w-10 h-10 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors"
+                      className="w-8 md:w-10 h-8 md:h-10 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors mobile-tap"
                     >
-                      <Eye size={18} />
+                      <Eye size={16} />
                     </button>
                   </div>
 
                   {/* Complexity Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  <div className="absolute top-2 md:top-4 left-2 md:left-4">
+                    <span className={`px-2 md:px-3 py-1 rounded-full text-xs font-medium ${
                       design.complexity === 'High' ? 'bg-red-100 text-red-800' :
                       design.complexity === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
                       'bg-green-100 text-green-800'
@@ -192,29 +240,29 @@ export default function Gallery() {
                   </div>
                 </div>
 
-                <div className="p-4 md:p-6">
-                  <h3 className="font-playfair text-xl font-semibold text-olive mb-2">
+                <div className="p-3 md:p-4 lg:p-6">
+                  <h3 className="font-playfair text-base md:text-lg lg:text-xl font-semibold text-olive mb-1 md:mb-2 line-clamp-2">
                     {design.title}
                   </h3>
-                  <p className="text-olive/70 text-sm mb-4">{design.description}</p>
+                  <p className="text-olive/70 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">{design.description}</p>
                   
-                  <div className="flex items-center justify-between text-sm text-olive/80 mb-4">
+                  <div className="flex items-center justify-between text-xs md:text-sm text-olive/80 mb-3 md:mb-4">
                     <div className="flex items-center space-x-1">
-                      <Clock size={14} />
-                      <span>{design.time}</span>
+                      <Clock size={12} />
+                      <span className="truncate">{design.time}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <DollarSign size={14} />
-                      <span>{design.price}</span>
+                      <DollarSign size={12} />
+                      <span className="truncate">{design.price}</span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => handleBookDesign(design)}
-                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-3 rounded-lg font-medium text-olive flex items-center justify-center space-x-2"
+                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-2 md:py-3 rounded-lg font-medium text-olive flex items-center justify-center space-x-2 mobile-tap text-sm md:text-base"
                   >
-                    <MessageCircle size={18} />
-                    <span>Book This Design</span>
+                    <MessageCircle size={16} />
+                    <span>Book Now</span>
                   </button>
                 </div>
               </motion.div>

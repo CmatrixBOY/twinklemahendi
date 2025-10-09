@@ -5,6 +5,9 @@ import {
   Sliders, Search, SortAsc, SortDesc, Star, TrendingUp, RotateCcw, Tag
 } from 'lucide-react';
 import { Link } from 'react-router';
+import MobileOptimizedModal from '../components/MobileOptimizedModal';
+import MobilePullToRefresh from '../components/MobilePullToRefresh';
+import MobileSwipeGestures, { useMobileDetection } from '../components/MobileSwipeGestures';
 
 const categories = [
   { id: 'all', name: 'All Designs', count: 24 },
@@ -270,6 +273,8 @@ export default function GalleryPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  
+  const { isMobile } = useMobileDetection();
 
   const filteredAndSortedDesigns = useMemo(() => {
     let filtered = designs.filter(design => {
@@ -385,6 +390,29 @@ export default function GalleryPage() {
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
+  const handleRefresh = async () => {
+    // Simulate refresh delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    // In a real app, this would refetch data
+    clearAllFilters();
+  };
+
+  const handleSwipeLeft = () => {
+    if (selectedDesign) {
+      const currentIndex = filteredAndSortedDesigns.findIndex(d => d.id === selectedDesign.id);
+      const nextIndex = (currentIndex + 1) % filteredAndSortedDesigns.length;
+      setSelectedDesign(filteredAndSortedDesigns[nextIndex]);
+    }
+  };
+
+  const handleSwipeRight = () => {
+    if (selectedDesign) {
+      const currentIndex = filteredAndSortedDesigns.findIndex(d => d.id === selectedDesign.id);
+      const prevIndex = currentIndex === 0 ? filteredAndSortedDesigns.length - 1 : currentIndex - 1;
+      setSelectedDesign(filteredAndSortedDesigns[prevIndex]);
+    }
+  };
+
   const getComplexityColor = (complexity: string) => {
     switch (complexity) {
       case 'High': return 'bg-red-100 text-red-800';
@@ -395,8 +423,9 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20 md:pt-24 pb-8 px-4 md:px-6">
-      <div className="container mx-auto">
+    <MobilePullToRefresh onRefresh={handleRefresh} className="min-h-screen">
+      <div className="pt-16 md:pt-20 lg:pt-24 pb-20 md:pb-8 px-3 md:px-4 lg:px-6 mobile-safe">
+        <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
@@ -405,34 +434,34 @@ export default function GalleryPage() {
           className="mb-6 md:mb-8"
         >
           <div className="flex items-center justify-between mb-4 md:mb-6">
-            <Link to="/" className="glass glass-hover p-2 md:p-3 rounded-full inline-flex items-center text-olive">
-              <ArrowLeft size={20} />
+            <Link to="/" className="glass glass-hover p-2 md:p-3 rounded-full inline-flex items-center text-olive mobile-tap">
+              <ArrowLeft size={18} />
             </Link>
-            <h1 className="font-playfair text-2xl md:text-4xl lg:text-5xl font-bold text-olive text-center">
+            <h1 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-olive text-center px-2">
               Design Gallery
             </h1>
-            <div className="flex space-x-2">
+            <div className="flex space-x-1 md:space-x-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`glass glass-hover p-2 md:p-3 rounded-full relative ${showFilters ? 'bg-pistachio-deep' : ''}`}
+                className={`glass glass-hover p-2 md:p-3 rounded-full relative mobile-tap ${showFilters ? 'bg-pistachio-deep' : ''}`}
               >
-                <Filter size={18} className="text-olive" />
+                <Filter size={16} className="text-olive" />
                 {activeFiltersCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {activeFiltersCount}
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {activeFiltersCount > 9 ? '9+' : activeFiltersCount}
                   </span>
                 )}
               </button>
               <button
                 onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
-                className="glass glass-hover p-2 md:p-3 rounded-full"
+                className="glass glass-hover p-2 md:p-3 rounded-full mobile-tap hidden sm:block"
               >
-                {viewMode === 'grid' ? <List size={18} className="text-olive" /> : <Grid size={18} className="text-olive" />}
+                {viewMode === 'grid' ? <List size={16} className="text-olive" /> : <Grid size={16} className="text-olive" />}
               </button>
             </div>
           </div>
           
-          <p className="text-base md:text-lg text-olive/80 text-center max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-olive/80 text-center max-w-2xl mx-auto px-2 md:px-4">
             Explore our complete collection of Mehndi designs crafted with love and precision for every occasion
           </p>
         </motion.div>
@@ -442,23 +471,23 @@ export default function GalleryPage() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="glass rounded-2xl p-4 mb-6"
+          className="glass rounded-2xl p-3 md:p-4 mb-4 md:mb-6"
         >
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-olive/60" size={20} />
+            <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-olive/60" size={18} />
             <input
               type="text"
               placeholder="Search designs, styles, tags..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-transparent border-none outline-none text-olive placeholder-olive/60 text-sm md:text-base"
+              className="w-full pl-10 md:pl-12 pr-10 md:pr-12 py-3 bg-transparent border-none outline-none text-olive placeholder-olive/60 text-sm md:text-base mobile-tap"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-olive/60 hover:text-olive"
+                className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-olive/60 hover:text-olive mobile-tap"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
             )}
           </div>
@@ -748,8 +777,8 @@ export default function GalleryPage() {
         <motion.div
           layout
           className={viewMode === 'grid' 
-            ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
-            : "space-y-4 md:space-y-6"
+            ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-6"
+            : "space-y-3 md:space-y-4 lg:space-y-6"
           }
         >
           <AnimatePresence>
@@ -762,8 +791,8 @@ export default function GalleryPage() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className={viewMode === 'grid' 
-                  ? "glass rounded-2xl overflow-hidden glass-hover group"
-                  : "glass rounded-2xl overflow-hidden glass-hover group flex flex-col sm:flex-row"
+                  ? "glass rounded-2xl overflow-hidden glass-hover group mobile-tap"
+                  : "glass rounded-2xl overflow-hidden glass-hover group flex flex-col sm:flex-row mobile-tap"
                 }
               >
                 <div className={viewMode === 'grid' 
@@ -784,10 +813,10 @@ export default function GalleryPage() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="absolute top-3 md:top-4 right-3 md:right-4 flex flex-col gap-2">
+                  <div className="absolute top-2 md:top-3 lg:top-4 right-2 md:right-3 lg:right-4 flex flex-col gap-1 md:gap-2">
                     <button
                       onClick={() => toggleLike(design.id)}
-                      className={`w-8 h-8 rounded-full glass flex items-center justify-center transition-colors ${
+                      className={`w-7 md:w-8 h-7 md:h-8 rounded-full glass flex items-center justify-center transition-colors mobile-tap ${
                         likedDesigns.includes(design.id) ? 'text-red-500' : 'text-olive'
                       }`}
                     >
@@ -796,7 +825,7 @@ export default function GalleryPage() {
                     
                     <button
                       onClick={() => setSelectedDesign(design)}
-                      className="w-8 h-8 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors"
+                      className="w-7 md:w-8 h-7 md:h-8 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors mobile-tap"
                     >
                       <Eye size={14} />
                     </button>
@@ -816,11 +845,11 @@ export default function GalleryPage() {
                   </div>
                 </div>
 
-                <div className={viewMode === 'grid' ? "p-4 md:p-6" : "p-4 md:p-6 flex-1"}>
-                  <h3 className="font-playfair text-lg md:text-xl font-semibold text-olive mb-2">
+                <div className={viewMode === 'grid' ? "p-3 md:p-4 lg:p-6" : "p-3 md:p-4 lg:p-6 flex-1"}>
+                  <h3 className="font-playfair text-base md:text-lg lg:text-xl font-semibold text-olive mb-1 md:mb-2 line-clamp-2">
                     {design.title}
                   </h3>
-                  <p className="text-olive/70 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">{design.description}</p>
+                  <p className="text-olive/70 text-xs md:text-sm mb-2 md:mb-3 lg:mb-4 line-clamp-2">{design.description}</p>
                   
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1 mb-3 md:mb-4">
@@ -849,7 +878,7 @@ export default function GalleryPage() {
 
                   <button
                     onClick={() => handleBookDesign(design)}
-                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-2 md:py-3 rounded-lg font-medium text-olive flex items-center justify-center space-x-2 text-sm md:text-base"
+                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-2 md:py-3 rounded-lg font-medium text-olive flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
                   >
                     <MessageCircle size={16} />
                     <span>Book Now</span>
@@ -895,90 +924,88 @@ export default function GalleryPage() {
           </motion.div>
         )}
 
-        {/* Design Detail Modal */}
-        <AnimatePresence>
+        {/* Mobile Optimized Design Detail Modal */}
+        <MobileOptimizedModal
+          isOpen={!!selectedDesign}
+          onClose={() => setSelectedDesign(null)}
+          fullScreen={isMobile}
+        >
           {selectedDesign && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-              onClick={() => setSelectedDesign(null)}
+            <MobileSwipeGestures
+              onSwipeLeft={handleSwipeLeft}
+              onSwipeRight={handleSwipeRight}
+              className="h-full"
             >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-                className="glass rounded-2xl max-w-lg md:max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              >
-                <div className="relative">
-                  <img
-                    src={selectedDesign.image}
-                    alt={selectedDesign.title}
-                    className="w-full aspect-square object-cover rounded-t-2xl"
-                  />
-                  <button
-                    onClick={() => setSelectedDesign(null)}
-                    className="absolute top-4 right-4 w-10 h-10 rounded-full glass flex items-center justify-center text-olive"
-                  >
-                    <X size={20} />
-                  </button>
-                  
-                  {/* Popularity Badge */}
-                  <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-full text-sm flex items-center space-x-2">
-                    <Star size={16} fill="currentColor" />
-                    <span>{selectedDesign.popularity}% Popular</span>
+              <div className="relative">
+                <img
+                  src={selectedDesign.image}
+                  alt={selectedDesign.title}
+                  className="w-full aspect-square object-cover"
+                />
+                
+                {/* Navigation indicators for mobile */}
+                {isMobile && (
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <div className="glass rounded-full px-3 py-1 text-white text-xs">
+                      Swipe to see more designs
+                    </div>
                   </div>
+                )}
+                
+                {/* Popularity Badge */}
+                <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-full text-sm flex items-center space-x-2">
+                  <Star size={16} fill="currentColor" />
+                  <span>{selectedDesign.popularity}% Popular</span>
+                </div>
+              </div>
+              
+              <div className="p-4 md:p-6">
+                <h3 className="font-playfair text-xl md:text-2xl font-bold text-olive mb-2">
+                  {selectedDesign.title}
+                </h3>
+                <p className="text-olive/80 mb-4 text-sm md:text-base">{selectedDesign.description}</p>
+                
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+                  {selectedDesign.tags.map((tag) => (
+                    <span key={tag} className="bg-pistachio-light text-olive text-xs md:text-sm px-2 md:px-3 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
                 
-                <div className="p-4 md:p-6">
-                  <h3 className="font-playfair text-xl md:text-2xl font-bold text-olive mb-2">
-                    {selectedDesign.title}
-                  </h3>
-                  <p className="text-olive/80 mb-4 text-sm md:text-base">{selectedDesign.description}</p>
-                  
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
-                    {selectedDesign.tags.map((tag) => (
-                      <span key={tag} className="bg-pistachio-light text-olive text-xs md:text-sm px-2 md:px-3 py-1 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="grid grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="glass rounded-lg p-2 md:p-3 text-center">
+                    <Clock className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
+                    <div className="text-xs md:text-sm text-olive/80">Duration</div>
+                    <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.time}</div>
                   </div>
-                  
-                  <div className="grid grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <Clock className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
-                      <div className="text-xs md:text-sm text-olive/80">Duration</div>
-                      <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.time}</div>
-                    </div>
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <DollarSign className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
-                      <div className="text-xs md:text-sm text-olive/80">Price Range</div>
-                      <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.price}</div>
-                    </div>
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <div className="text-xs md:text-sm text-olive/80 mb-1">Complexity</div>
-                      <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getComplexityColor(selectedDesign.complexity)}`}>
-                        {selectedDesign.complexity}
-                      </div>
+                  <div className="glass rounded-lg p-2 md:p-3 text-center">
+                    <DollarSign className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
+                    <div className="text-xs md:text-sm text-olive/80">Price Range</div>
+                    <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.price}</div>
+                  </div>
+                  <div className="glass rounded-lg p-2 md:p-3 text-center">
+                    <div className="text-xs md:text-sm text-olive/80 mb-1">Complexity</div>
+                    <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getComplexityColor(selectedDesign.complexity)}`}>
+                      {selectedDesign.complexity}
                     </div>
                   </div>
-
-                  <button
-                    onClick={() => handleBookDesign(selectedDesign)}
-                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-3 md:py-4 rounded-lg font-semibold text-olive flex items-center justify-center space-x-2 text-sm md:text-base"
-                  >
-                    <MessageCircle size={18} />
-                    <span>Book This Design</span>
-                  </button>
                 </div>
-              </motion.div>
-            </motion.div>
+
+                <button
+                  onClick={() => handleBookDesign(selectedDesign)}
+                  className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-3 md:py-4 rounded-lg font-semibold text-olive flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
+                >
+                  <MessageCircle size={18} />
+                  <span>Book This Design</span>
+                </button>
+              </div>
+            </MobileSwipeGestures>
           )}
-        </AnimatePresence>
+        </MobileOptimizedModal>
       </div>
-    </div>
+      </div>
+    </MobilePullToRefresh>
   );
 }

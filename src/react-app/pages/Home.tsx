@@ -8,10 +8,11 @@ import Contact from '@/react-app/components/Contact';
 import Footer from '@/react-app/components/Footer';
 import LanguageSelector from '@/react-app/components/LanguageSelector';
 import WhatsAppButton from '@/react-app/components/WhatsAppButton';
+import ScrollToTop from '@/react-app/components/ScrollToTop';
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative">
+    <div className=" min-h-screen relative">
       <FloatingParticles />
       <LanguageSelector />
       <Navigation />
@@ -24,6 +25,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <ScrollToTop />
     </div>
   );
 }
