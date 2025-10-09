@@ -34,7 +34,7 @@ export default function LanguageSelector() {
     setShowModal(false);
     
     console.log('Attempting to change language to:', languageCode);
-    const googleTranslateSelect = document.querySelector('.goog-te-combo');
+    const googleTranslateSelect = document.querySelector('.goog-te-combo') as HTMLSelectElement;
     if (googleTranslateSelect) {
       console.log('Found Google Translate select element:', googleTranslateSelect);
       googleTranslateSelect.value = languageCode;
