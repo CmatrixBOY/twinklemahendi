@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import path from "path";
 
+
 // Server build configuration
 export default defineConfig({
   build: {
