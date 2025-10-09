@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {Home, Image, Star, MessageCircle, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
