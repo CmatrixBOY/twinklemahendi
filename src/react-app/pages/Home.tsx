@@ -6,6 +6,7 @@ import Testimonials from '@/react-app/components/Testimonials';
 import FAQ from '@/react-app/components/FAQ';
 import Contact from '@/react-app/components/Contact';
 import Footer from '@/react-app/components/Footer';
+import LanguageSelector from '@/react-app/components/LanguageSelector';
 import WhatsAppButton from '@/react-app/components/WhatsAppButton';
 import ScrollToTop from '@/react-app/components/ScrollToTop';
 
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen w-auto">
       <FloatingParticles />
+      <LanguageSelector />
       <Navigation />
       <main>
         <Hero />

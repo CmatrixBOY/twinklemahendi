@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+#google_translate_element {
+    display: none;
+}
+
+
 #google_translate_element .goog-logo-link {
     display: none !important;
 }
