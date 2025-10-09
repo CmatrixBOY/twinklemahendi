@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stats } from "@/data/stats";
@@ -16,20 +16,26 @@ const heroMedia = {
 
 const MotionSection = motion.section;
 
-const Counter = ({ value, inView }: { value: string; inView: boolean }) => {
+const Counter = ({ value, active }: { value: string; active: boolean }) => {
   const numeric = Number(value.replace(/[^0-9.]/g, ""));
   const suffix = value.replace(/[0-9.,]/g, "").trim();
   const motionValue = useMotionValue(0);
   const rounded = useTransform(motionValue, (latest) => Math.round(latest).toLocaleString());
   const [display, setDisplay] = useState("0");
 
-  useMemo(() => rounded.on("change", setDisplay), [rounded]);
+  useEffect(() => {
+    const unsubscribe = rounded.on("change", setDisplay);
+    return () => {
+      unsubscribe();
+    };
+  }, [rounded]);
 
-  if (inView) {
-    motionValue.stop();
+  useEffect(() => {
+    if (!active) return;
     motionValue.set(0);
-    motionValue.animate(numeric, { duration: 2.2, ease: "easeOut" }).catch(() => motionValue.set(numeric));
-  }
+    const controls = animate(motionValue, numeric, { duration: 2.2, ease: "easeOut" });
+    return () => controls.stop();
+  }, [active, motionValue, numeric]);
 
   return (
     <span className="text-3xl font-semibold text-primary md:text-4xl">
@@ -94,7 +100,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
               viewport={{ once: true, amount: 0.4 }}
             >
-              <Counter value={item.value} inView={inView} />
+              <Counter value={item.value} active={inView} />
               <p className="mt-2 font-heading text-lg text-foreground">
                 {localize(language, item.label)}
               </p>
