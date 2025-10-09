@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Volume2, VolumeX } from "lucide-react";
 
 const AMBIENT_AUDIO_SRC =
@@ -35,8 +36,10 @@ export const AmbientAudioToggle = () => {
   return (
     <Button
       type="button"
-      variant="ghost"
-      className="glass-button glass !px-4 !py-2 bg-[hsl(var(--glass-light))] text-sm text-foreground"
+      className={cn(
+        "glass-button min-h-[2.5rem] px-4 py-2 text-sm",
+        enabled ? "shadow-glow" : "opacity-90 hover:opacity-100"
+      )}
       onClick={() => setEnabled((prev) => !prev)}
       aria-pressed={enabled}
     >
