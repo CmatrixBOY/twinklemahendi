@@ -258,18 +258,16 @@ const DesignCard = ({
   const localizedDescription = localize(language as never, item.description);
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <motion.button
-          onClick={onSelect}
-          className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/40 text-left shadow-soft backdrop-blur-3xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.05, duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+    <motion.button
+      onClick={onSelect}
+      className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/40 text-left shadow-soft backdrop-blur-3xl"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05, duration: 0.5, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
           <div className="relative aspect-[3/4] overflow-hidden">
             <img src={item.imageUrl} alt={localizedTitle} className="h-full w-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
@@ -295,9 +293,7 @@ const DesignCard = ({
               ))}
             </div>
           </div>
-        </motion.button>
-      </DialogTrigger>
-    </Dialog>
+    </motion.button>
   );
 };
 
