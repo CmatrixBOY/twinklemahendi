@@ -177,12 +177,4 @@
   .text-pretty {
     text-wrap: pretty;
   }
-
-  .shadow-soft {
-    box-shadow: 0 30px 70px -45px rgba(149, 213, 178, 0.65);
-  }
-
-  .shadow-glow {
-    box-shadow: 0 15px 45px -25px rgba(149, 213, 178, 0.75);
-  }
 }
