@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+#google_translate_element .goog-logo-link {
+    display: none !important;
+}
+
+#google_translate_element .goog-te-gadget {
+    font-size: 0px !important;
+}
+
+#google_translate_element .goog-te-gadget-simple {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+}
+
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+
+
 :root {
   font-family: 'Poppins', system-ui, sans-serif;
   
