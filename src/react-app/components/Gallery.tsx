@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Clock, DollarSign, MessageCircle, X, Eye } from 'lucide-react';
+import { isMobile } from 'react-device-detect';
 
 const categories = ['All', 'Bridal', 'Engagement', 'Festival', 'Kids', 'Custom'];
 
@@ -9,7 +10,7 @@ const designs = [
     id: 1,
     title: 'Royal Bridal Design',
     category: 'Bridal',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
     time: '3-4 hours',
     price: '₹2500-3500',
     complexity: 'High',
@@ -19,7 +20,7 @@ const designs = [
     id: 2,
     title: 'Engagement Elegance',
     category: 'Engagement',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
     time: '2-3 hours',
     price: '₹1500-2000',
     complexity: 'Medium',
@@ -29,7 +30,7 @@ const designs = [
     id: 3,
     title: 'Festival Joy',
     category: 'Festival',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
     time: '1-2 hours',
     price: '₹800-1200',
     complexity: 'Medium',
@@ -39,7 +40,7 @@ const designs = [
     id: 4,
     title: 'Kids Delight',
     category: 'Kids',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
     time: '30-45 mins',
     price: '₹300-500',
     complexity: 'Low',
@@ -49,7 +50,7 @@ const designs = [
     id: 5,
     title: 'Custom Creation',
     category: 'Custom',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
     time: '2-5 hours',
     price: '₹1000-4000',
     complexity: 'Variable',
@@ -59,7 +60,7 @@ const designs = [
     id: 6,
     title: 'Minimalist Modern',
     category: 'Engagement',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
     time: '1-2 hours',
     price: '₹1200-1800',
     complexity: 'Low',
@@ -72,10 +73,25 @@ export default function Gallery() {
   const [selectedDesign, setSelectedDesign] = useState<typeof designs[0] | null>(null);
   const [likedDesigns, setLikedDesigns] = useState<number[]>([]);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const filteredDesigns = selectedCategory === 'All' 
     ? designs 
     : designs.filter(design => design.category === selectedCategory);
+
+  useEffect(() => {
+    const imagePromises = filteredDesigns.map(design => {
+      return new Promise<void>(resolve => {
+        const img = new Image();
+        img.src = design.image;
+        img.onload = () => resolve();
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      setImagesLoaded(true);
+    });
+  }, [filteredDesigns]);
 
   const toggleLike = (designId: number) => {
     setLikedDesigns(prev => 
@@ -87,18 +103,18 @@ export default function Gallery() {
 
   const handleBookDesign = (design: typeof designs[0]) => {
     const message = encodeURIComponent(`Hello Twinkle! I loved your ${design.title}. Could you share booking details for this design?`);
-    const phoneNumber = "919876543210";
+    const phoneNumber = "917041634002";
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
   return (
     <section id="gallery" className="py-12 md:py-16 lg:py-20 px-3 md:px-4 lg:px-6 mobile-safe">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-7xl px-4">
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          initial={isMobile ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          whileInView={isMobile ? {} : { y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
           className="text-center mb-8 md:mb-12 lg:mb-16"
         >
           <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-olive mb-3 md:mb-4 lg:mb-6 px-2">
@@ -111,10 +127,10 @@ export default function Gallery() {
 
         {/* Mobile Category Filter */}
         <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+          whileInView={isMobile ? {} : { y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
           className="mb-6 md:mb-8 lg:mb-12"
         >
           {/* Mobile Filter Toggle */}
@@ -179,20 +195,26 @@ export default function Gallery() {
           </AnimatePresence>
         </motion.div>
 
+        {!imagesLoaded && (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-olive"></div>
+          </div>
+        )}
+
         {/* Design Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-6"
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-6 ${imagesLoaded ? '' : 'hidden'}`}
         >
           <AnimatePresence>
             {filteredDesigns.map((design, index) => (
               <motion.div
                 key={design.id}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                animate={isMobile ? {} : { opacity: 1, scale: 1 }}
+                exit={isMobile ? {} : { opacity: 0, scale: 0.8 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: index * 0.05 }}
                 className="glass rounded-2xl overflow-hidden glass-hover group mobile-tap"
               >
                 <div className="relative aspect-square overflow-hidden">
@@ -302,10 +324,10 @@ export default function Gallery() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="font-playfair text-2xl font-bold text-olive mb-2">
+                  <h3 className="font-playfair text-2xl font-bold text-pistachio-deep mb-2">
                     {selectedDesign.title}
                   </h3>
-                  <p className="text-olive/80 mb-4">{selectedDesign.description}</p>
+                  <p className="text-pistachio-deep mb-4">{selectedDesign.description}</p>
                   
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="glass rounded-lg p-3 text-center">

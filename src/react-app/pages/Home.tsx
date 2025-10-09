@@ -12,7 +12,7 @@ import ScrollToTop from '@/react-app/components/ScrollToTop';
 
 export default function Home() {
   return (
-    <div className=" min-h-screen relative">
+    <div className="min-h-screen w-auto">
       <FloatingParticles />
       <LanguageSelector />
       <Navigation />
@@ -24,8 +24,10 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
-      <ScrollToTop />
+      <div className="fixed bottom-20 right-5 z-50 flex flex-col gap-4">
+        <WhatsAppButton />
+        <ScrollToTop />
+      </div>
     </div>
   );
 }

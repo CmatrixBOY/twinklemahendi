@@ -149,7 +149,7 @@ export default function FAQ() {
               <button
                 onClick={() => {
                   const message = encodeURIComponent("Hello Twinkle! I have some questions about your mehndi services. Could you please help me?");
-                  const phoneNumber = "919876543210";
+                  const phoneNumber = "917041634002";
                   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
                 }}
                 className="bg-pistachio-deep hover:bg-pistachio-soft transition-colors px-8 py-3 rounded-lg font-semibold text-olive"

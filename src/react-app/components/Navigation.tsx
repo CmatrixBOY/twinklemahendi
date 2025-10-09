@@ -142,7 +142,7 @@ export default function Navigation() {
         transition={{ duration: 0.8 }}
       className="fixed top-0 left-0 right-0 md:hidden z-40 mobile-safe-top mr-10 ml-40"
       >
-        <div className="glass m-2 rounded-2xl px-4 py-3 flex items-center justify-between text-center">
+        <div className="glass m-2 rounded-2xl px-4 py-3 flex items-center  justify-between text-center">
 
           <motion.div
             initial={{ scale: 0 }}

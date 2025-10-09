@@ -34,7 +34,7 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-20 right-5 w-12 h-12 bg-pistachio-deep rounded-full flex items-center justify-center text-olive shadow-lg z-50 mobile-tap"
+          className="w-12 h-12 mb-5 mr-16 bg-pistachio-deep rounded-full flex items-center justify-center text-olive shadow-lg z-50 mobile-tap"
         >
           <ArrowUp size={24} />
         </motion.button>

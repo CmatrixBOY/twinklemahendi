@@ -44,7 +44,7 @@ export default function Footer() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const message = encodeURIComponent("Hello Twinkle! I'm interested in your mehndi services.");
-                  window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+                  window.open(`https://wa.me/917041634002?text=${message}`, '_blank');
                 }}
                 className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white"
               >
