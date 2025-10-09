@@ -1,4 +1,5 @@
 {
+  "name": "twinklebatliwala",
   "builds": [
     {
       "src": "package.json",
