@@ -15,15 +15,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { galleryItems, type BudgetLevel, type ComplexityLevel, type GalleryCategory, type OccasionType } from "@/data/gallery";
+import {
+  galleryItems,
+  type BudgetLevel,
+  type ComplexityLevel,
+  type GalleryCategory,
+  type OccasionType,
+} from "@/data/gallery";
 import { copy } from "@/data/copy";
 import { localize } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { getWhatsAppLink } from "@/lib/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const typeOptions: Array<{ value: "all" | GalleryCategory; label: Record<string, string> }> = [
-  { value: "all", label: { en: "All styles", hi: "सभी शैलियाँ", gu: "બધી શૈલીઓ" } },
+const typeOptions: Array<{
+  value: "all" | GalleryCategory;
+  label: Record<string, string>;
+}> = [
+  {
+    value: "all",
+    label: { en: "All styles", hi: "सभी शैलियाँ", gu: "બધી શૈલીઓ" },
+  },
   { value: "bridal", label: { en: "Bridal", hi: "ब्राइडल", gu: "વિવાહ" } },
   { value: "engagement", label: { en: "Engagement", hi: "सगाई", gu: "સગાઈ" } },
   { value: "festival", label: { en: "Festival", hi: "उत्सव", gu: "ઉત્સવ" } },
@@ -31,29 +43,56 @@ const typeOptions: Array<{ value: "all" | GalleryCategory; label: Record<string,
   { value: "custom", label: { en: "Custom", hi: "कस्टम", gu: "કસ્ટમ" } },
 ];
 
-const budgetOptions: Array<{ value: "all" | BudgetLevel; label: Record<string, string> }> = [
+const budgetOptions: Array<{
+  value: "all" | BudgetLevel;
+  label: Record<string, string>;
+}> = [
   { value: "all", label: { en: "All budgets", hi: "सभी बजट", gu: "બધા બજેટ" } },
   { value: "classic", label: { en: "Classic", hi: "क्लासिक", gu: "ક્લાસિક" } },
-  { value: "signature", label: { en: "Signature", hi: "सिग्नेचर", gu: "સિગ્નેચર" } },
-  { value: "premium", label: { en: "Premium", hi: "प्रीमियम", gu: "પ્રીમિયમ" } },
+  {
+    value: "signature",
+    label: { en: "Signature", hi: "सिग्नेचर", gu: "સિગ્નેચર" },
+  },
+  {
+    value: "premium",
+    label: { en: "Premium", hi: "प्रीमियम", gu: "પ્રીમિયમ" },
+  },
   { value: "luxury", label: { en: "Luxury", hi: "लक्जरी", gu: "લક્ઝરી" } },
 ];
 
-const occasionOptions: Array<{ value: "all" | OccasionType; label: Record<string, string> }> = [
-  { value: "all", label: { en: "All occasions", hi: "सभी अवसर", gu: "બધા પ્રસંગો" } },
+const occasionOptions: Array<{
+  value: "all" | OccasionType;
+  label: Record<string, string>;
+}> = [
+  {
+    value: "all",
+    label: { en: "All occasions", hi: "सभी अवसर", gu: "બધા પ્રસંગો" },
+  },
   { value: "wedding", label: { en: "Wedding", hi: "विवाह", gu: "લગ્ન" } },
   { value: "sangeet", label: { en: "Sangeet", hi: "संगीत", gu: "સંગીત" } },
   { value: "festival", label: { en: "Festival", hi: "उत्सव", gu: "ઉત્સવ" } },
   { value: "eid", label: { en: "Eid", hi: "ईद", gu: "ઈદ" } },
-  { value: "baby-shower", label: { en: "Baby shower", hi: "गोड भराई", gu: "ગોડ ભરાઇ" } },
+  {
+    value: "baby-shower",
+    label: { en: "Baby shower", hi: "गोड भराई", gu: "ગોડ ભરાઇ" },
+  },
   { value: "party", label: { en: "Celebration", hi: "समारोह", gu: "ઉજવણી" } },
 ];
 
-const complexityOptions: Array<{ value: "all" | ComplexityLevel; label: Record<string, string> }> = [
-  { value: "all", label: { en: "All details", hi: "सभी विवरण", gu: "બધી વિગત" } },
+const complexityOptions: Array<{
+  value: "all" | ComplexityLevel;
+  label: Record<string, string>;
+}> = [
+  {
+    value: "all",
+    label: { en: "All details", hi: "सभी विवरण", gu: "બધી વિગત" },
+  },
   { value: "minimal", label: { en: "Minimal", hi: "सरल", gu: "સરળ" } },
   { value: "ornate", label: { en: "Ornate", hi: "सजावटी", gu: "અલંકારિક" } },
-  { value: "intricate", label: { en: "Intricate", hi: "सूक्ष्म", gu: "સૂક્ષ્મ" } },
+  {
+    value: "intricate",
+    label: { en: "Intricate", hi: "सूक्ष्म", gu: "સૂક્ષ્મ" },
+  },
   { value: "playful", label: { en: "Playful", hi: "खिलंदड़", gu: "રમુજી" } },
 ];
 
@@ -82,23 +121,34 @@ export const GallerySection = () => {
   const filteredItems = useMemo(
     () =>
       galleryItems.filter((item) => {
-        const matchesType = filters.type === "all" || item.category === filters.type;
-        const matchesBudget = filters.budget === "all" || item.budget === filters.budget;
-        const matchesOccasion = filters.occasion === "all" || item.occasion === filters.occasion;
-        const matchesComplexity = filters.complexity === "all" || item.complexity === filters.complexity;
-        return matchesType && matchesBudget && matchesOccasion && matchesComplexity;
+        const matchesType =
+          filters.type === "all" || item.category === filters.type;
+        const matchesBudget =
+          filters.budget === "all" || item.budget === filters.budget;
+        const matchesOccasion =
+          filters.occasion === "all" || item.occasion === filters.occasion;
+        const matchesComplexity =
+          filters.complexity === "all" ||
+          item.complexity === filters.complexity;
+        return (
+          matchesType && matchesBudget && matchesOccasion && matchesComplexity
+        );
       }),
-    [filters]
+    [filters],
   );
 
   const recommendedDesign = useMemo(() => {
     if (!aiOccasion && !aiBudget) return galleryItems[0];
     const strictMatch = galleryItems.find(
       (item) =>
-        (!aiOccasion || item.occasion === aiOccasion) && (!aiBudget || item.budget === aiBudget)
+        (!aiOccasion || item.occasion === aiOccasion) &&
+        (!aiBudget || item.budget === aiBudget),
     );
     if (strictMatch) return strictMatch;
-    return galleryItems.find((item) => item.occasion === aiOccasion) ?? galleryItems[0];
+    return (
+      galleryItems.find((item) => item.occasion === aiOccasion) ??
+      galleryItems[0]
+    );
   }, [aiBudget, aiOccasion]);
 
   const resetFilters = () => setFilters(initialFilterState);
@@ -117,14 +167,24 @@ export const GallerySection = () => {
           label={strings.gallery.filters.type}
           options={typeOptions}
           value={filters.type}
-          onValueChange={(value) => setFilters((prev) => ({ ...prev, type: value as FilterState["type"] }))}
+          onValueChange={(value) =>
+            setFilters((prev) => ({
+              ...prev,
+              type: value as FilterState["type"],
+            }))
+          }
           language={language}
         />
         <FilterSelect
           label={strings.gallery.filters.budget}
           options={budgetOptions}
           value={filters.budget}
-          onValueChange={(value) => setFilters((prev) => ({ ...prev, budget: value as FilterState["budget"] }))}
+          onValueChange={(value) =>
+            setFilters((prev) => ({
+              ...prev,
+              budget: value as FilterState["budget"],
+            }))
+          }
           language={language}
         />
         <FilterSelect
@@ -132,7 +192,10 @@ export const GallerySection = () => {
           options={occasionOptions}
           value={filters.occasion}
           onValueChange={(value) =>
-            setFilters((prev) => ({ ...prev, occasion: value as FilterState["occasion"] }))
+            setFilters((prev) => ({
+              ...prev,
+              occasion: value as FilterState["occasion"],
+            }))
           }
           language={language}
         />
@@ -141,7 +204,10 @@ export const GallerySection = () => {
           options={complexityOptions}
           value={filters.complexity}
           onValueChange={(value) =>
-            setFilters((prev) => ({ ...prev, complexity: value as FilterState["complexity"] }))
+            setFilters((prev) => ({
+              ...prev,
+              complexity: value as FilterState["complexity"],
+            }))
           }
           language={language}
         />
@@ -172,28 +238,38 @@ export const GallerySection = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             {strings.gallery.aiTitle}
           </p>
-          <h3 className="text-2xl font-heading text-foreground">AI Design Recommender</h3>
-          <p className="text-sm text-muted-foreground">{strings.gallery.aiSubtitle}</p>
+          <h3 className="text-2xl font-heading text-foreground">
+            AI Design Recommender
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            {strings.gallery.aiSubtitle}
+          </p>
           <div className="space-y-3">
             <FilterSelect
               label={strings.gallery.filters.occasion}
               options={occasionOptions}
               value={aiOccasion || "all"}
-              onValueChange={(value) => setAiOccasion(value === "all" ? "" : (value as OccasionType))}
+              onValueChange={(value) =>
+                setAiOccasion(value === "all" ? "" : (value as OccasionType))
+              }
               language={language}
             />
             <FilterSelect
               label={strings.gallery.filters.budget}
               options={budgetOptions}
               value={aiBudget || "all"}
-              onValueChange={(value) => setAiBudget(value === "all" ? "" : (value as BudgetLevel))}
+              onValueChange={(value) =>
+                setAiBudget(value === "all" ? "" : (value as BudgetLevel))
+              }
               language={language}
             />
           </div>
           <Button
             type="button"
             className="glass-button w-full justify-center"
-            onClick={() => setSelectedDesign(galleryItems.indexOf(recommendedDesign))}
+            onClick={() =>
+              setSelectedDesign(galleryItems.indexOf(recommendedDesign))
+            }
           >
             {strings.gallery.aiCTA}
           </Button>
@@ -201,7 +277,9 @@ export const GallerySection = () => {
             <p className="font-heading text-base text-foreground">
               {localize(language, recommendedDesign.title)}
             </p>
-            <p className="mt-1 text-xs">{localize(language, recommendedDesign.description)}</p>
+            <p className="mt-1 text-xs">
+              {localize(language, recommendedDesign.description)}
+            </p>
           </div>
         </div>
       </div>
@@ -224,9 +302,17 @@ interface FilterSelectProps {
   language: string;
 }
 
-const FilterSelect = ({ label, options, value, onValueChange, language }: FilterSelectProps) => (
+const FilterSelect = ({
+  label,
+  options,
+  value,
+  onValueChange,
+  language,
+}: FilterSelectProps) => (
   <div className="space-y-2 text-left">
-    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
+    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-muted-foreground">
+      {label}
+    </p>
     <Select value={value} onValueChange={onValueChange}>
       <SelectTrigger className="glass-card h-12 justify-between border-white/40">
         <SelectValue placeholder={label} />
@@ -268,31 +354,38 @@ const DesignCard = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-          <div className="relative aspect-[3/4] overflow-hidden">
-            <img src={item.imageUrl} alt={localizedTitle} className="h-full w-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.15)_0,rgba(255,255,255,0.15)_10px,rgba(255,255,255,0.05)_10px,rgba(255,255,255,0.05)_20px)] opacity-40 mix-blend-screen" />
-            <p className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary">
-              {item.budget.toUpperCase()}
-            </p>
-          </div>
-          <div className="space-y-2 p-4">
-            <h3 className="font-heading text-lg text-foreground">{localizedTitle}</h3>
-            <p className="text-sm text-muted-foreground">{localizedDescription}</p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag.en}
-                  className={cn(
-                    "rounded-full bg-white/60 px-3 py-1 text-xs font-medium text-primary shadow-inner",
-                    isHovered && "shadow-glow"
-                  )}
-                >
-                  {tag[language as never] ?? tag.en}
-                </span>
-              ))}
-            </div>
-          </div>
+      <div className="relative aspect-[3/4] overflow-hidden">
+        <img
+          src={item.imageUrl}
+          alt={localizedTitle}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.15)_0,rgba(255,255,255,0.15)_10px,rgba(255,255,255,0.05)_10px,rgba(255,255,255,0.05)_20px)] opacity-40 mix-blend-screen" />
+        <p className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary">
+          {item.budget.toUpperCase()}
+        </p>
+      </div>
+      <div className="space-y-2 p-4">
+        <h3 className="font-heading text-lg text-foreground">
+          {localizedTitle}
+        </h3>
+        <p className="text-sm text-muted-foreground">{localizedDescription}</p>
+        <div className="flex flex-wrap gap-2 pt-2">
+          {item.tags.map((tag) => (
+            <span
+              key={tag.en}
+              className={cn(
+                "rounded-full bg-white/60 px-3 py-1 text-xs font-medium text-primary shadow-inner",
+                isHovered && "shadow-glow",
+              )}
+            >
+              {tag[language as never] ?? tag.en}
+            </span>
+          ))}
+        </div>
+      </div>
     </motion.button>
   );
 };
@@ -320,18 +413,27 @@ const DesignModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="glass-card max-w-5xl border-none p-0 text-left shadow-glow">
         <DialogHeader className="px-6 pt-6">
-          <DialogTitle className="text-3xl font-heading text-foreground">{localizedTitle}</DialogTitle>
+          <DialogTitle className="text-3xl font-heading text-foreground">
+            {localizedTitle}
+          </DialogTitle>
         </DialogHeader>
         <div className="grid gap-6 px-6 pb-8 lg:grid-cols-[1.4fr_1fr]">
           <div className="relative overflow-hidden rounded-3xl border border-white/50">
-            <img src={item.imageUrl} alt={localizedTitle} className="h-full w-full object-cover" loading="lazy" />
+            <img
+              src={item.imageUrl}
+              alt={localizedTitle}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
             <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0)_0,rgba(255,255,255,0)_30px,rgba(255,255,255,0.25)_30px,rgba(255,255,255,0.25)_60px)]" />
             <div className="absolute inset-0 grid place-items-center text-center text-3xl font-heading uppercase tracking-widest text-white/30 mix-blend-overlay">
               {copy[language as never].gallery.watermark}
             </div>
           </div>
           <div className="space-y-4">
-            <p className="text-base text-muted-foreground">{localizedDescription}</p>
+            <p className="text-base text-muted-foreground">
+              {localizedDescription}
+            </p>
             <div className="grid gap-3 text-sm text-foreground/90">
               <InfoRow label="Occasion" value={item.occasion} />
               <InfoRow label="Budget" value={item.budget} />
@@ -340,8 +442,15 @@ const DesignModal = ({
               <InfoRow label="Investment" value={localizedPrice} />
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Button asChild className="glass-button bg-primary text-primary-foreground">
-                <a href={getWhatsAppLink(message)} target="_blank" rel="noreferrer">
+              <Button
+                asChild
+                className="glass-button bg-primary text-primary-foreground"
+              >
+                <a
+                  href={getWhatsAppLink(message)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {copy[language as never].contact.form.whatsapp}
                 </a>
               </Button>
@@ -354,7 +463,8 @@ const DesignModal = ({
                 Notes
               </p>
               <p>
-                Organic henna cones, skin-safe glitter, and travel-inclusive touch ups available on request.
+                Organic henna cones, skin-safe glitter, and travel-inclusive
+                touch ups available on request.
               </p>
             </div>
           </div>
@@ -366,7 +476,9 @@ const DesignModal = ({
 
 const InfoRow = ({ label, value }: { label: string; value: string }) => (
   <div className="flex items-center justify-between rounded-xl bg-white/60 px-4 py-2 shadow-inner backdrop-blur">
-    <span className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">{label}</span>
+    <span className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+      {label}
+    </span>
     <span className="text-sm font-medium text-foreground">{value}</span>
   </div>
 );

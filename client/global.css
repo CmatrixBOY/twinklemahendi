@@ -111,11 +111,27 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
     background-image:
-      radial-gradient(circle at 12% 18%, hsl(var(--gradient-start) / 0.45) 0%, transparent 55%),
-      radial-gradient(circle at 88% 8%, hsl(var(--gradient-end) / 0.4) 0%, transparent 60%),
-      linear-gradient(140deg, hsl(var(--background)) 0%, hsl(var(--gradient-mid)) 55%, hsl(var(--background)) 100%);
+      radial-gradient(
+        circle at 12% 18%,
+        hsl(var(--gradient-start) / 0.45) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 88% 8%,
+        hsl(var(--gradient-end) / 0.4) 0%,
+        transparent 60%
+      ),
+      linear-gradient(
+        140deg,
+        hsl(var(--background)) 0%,
+        hsl(var(--gradient-mid)) 55%,
+        hsl(var(--background)) 100%
+      );
     background-attachment: fixed;
-    background-size: 140% 140%, 140% 140%, cover;
+    background-size:
+      140% 140%,
+      140% 140%,
+      cover;
     min-height: 100vh;
   }
 

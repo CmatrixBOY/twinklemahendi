@@ -21,7 +21,10 @@ import { getWhatsAppLink } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const renderIcon = (icon: (typeof navigationItems)[number]["icon"], className?: string) => {
+const renderIcon = (
+  icon: (typeof navigationItems)[number]["icon"],
+  className?: string,
+) => {
   const props = { className: cn("h-5 w-5", className) };
   switch (icon) {
     case "home":
@@ -51,7 +54,9 @@ const HeaderBrand = () => (
     </div>
     <div className="leading-tight">
       <p className="font-accent text-2xl text-accent">Twinkle Batliwala</p>
-      <p className="text-sm text-muted-foreground">Pistachio glass mehndi atelier</p>
+      <p className="text-sm text-muted-foreground">
+        Pistachio glass mehndi atelier
+      </p>
     </div>
   </motion.div>
 );
@@ -80,7 +85,7 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
           {copy[language].nav[item.labelKey]}
         </a>
       )),
-    [language]
+    [language],
   );
 
   return (
@@ -115,7 +120,11 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
               className="glass-button hidden border-none bg-gradient-to-r from-primary to-[#95D5B2] text-sm font-semibold text-primary-foreground shadow-glow md:inline-flex"
               asChild
             >
-              <a href={getWhatsAppLink(strings.hero.heading)} target="_blank" rel="noreferrer">
+              <a
+                href={getWhatsAppLink(strings.hero.heading)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {strings.hero.ctaSecondary}
               </a>
             </Button>
@@ -127,8 +136,12 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
         </main>
 
         <footer className="mt-24 rounded-3xl bg-white/40 p-10 text-center shadow-soft backdrop-blur-2xl dark:bg-white/10">
-          <p className="font-accent text-3xl text-accent">{strings.footer.signature}</p>
-          <p className="mt-3 text-sm text-muted-foreground">{strings.footer.rights}</p>
+          <p className="font-accent text-3xl text-accent">
+            {strings.footer.signature}
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {strings.footer.rights}
+          </p>
           <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-foreground">
               {strings.legal.privacyTitle}
@@ -149,12 +162,19 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => {
 
       <StickyNavigation onLanguageClick={handleOpenLanguage} />
       <FloatingWhatsApp />
-      <LanguageSelectorModal open={languageModalOpen} onOpenChange={setLanguageModalOpen} />
+      <LanguageSelectorModal
+        open={languageModalOpen}
+        onOpenChange={setLanguageModalOpen}
+      />
     </div>
   );
 };
 
-const StickyNavigation = ({ onLanguageClick }: { onLanguageClick: () => void }) => {
+const StickyNavigation = ({
+  onLanguageClick,
+}: {
+  onLanguageClick: () => void;
+}) => {
   const { language } = useLanguage();
   const strings = copy[language];
 

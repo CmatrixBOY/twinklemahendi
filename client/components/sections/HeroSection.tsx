@@ -1,5 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stats } from "@/data/stats";
@@ -20,7 +26,9 @@ const Counter = ({ value, active }: { value: string; active: boolean }) => {
   const numeric = Number(value.replace(/[^0-9.]/g, ""));
   const suffix = value.replace(/[0-9.,]/g, "").trim();
   const motionValue = useMotionValue(0);
-  const rounded = useTransform(motionValue, (latest) => Math.round(latest).toLocaleString());
+  const rounded = useTransform(motionValue, (latest) =>
+    Math.round(latest).toLocaleString(),
+  );
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
@@ -33,7 +41,10 @@ const Counter = ({ value, active }: { value: string; active: boolean }) => {
   useEffect(() => {
     if (!active) return;
     motionValue.set(0);
-    const controls = animate(motionValue, numeric, { duration: 2.2, ease: "easeOut" });
+    const controls = animate(motionValue, numeric, {
+      duration: 2.2,
+      ease: "easeOut",
+    });
     return () => controls.stop();
   }, [active, motionValue, numeric]);
 
@@ -65,7 +76,9 @@ export const HeroSection = () => {
       <div className="relative flex flex-col gap-8">
         <div className="inline-flex items-center gap-3 rounded-full bg-[hsl(var(--glass-light))] px-4 py-2 text-sm text-primary shadow-soft backdrop-blur-xl">
           <Sparkles className="h-4 w-4" />
-          <span className="font-medium tracking-wide">{strings.hero.eyebrow}</span>
+          <span className="font-medium tracking-wide">
+            {strings.hero.eyebrow}
+          </span>
         </div>
         <div className="space-y-6">
           <h1 className="section-heading text-balance text-4xl leading-[1.05] md:text-6xl">
@@ -76,21 +89,33 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
-          <Button asChild className="glass-button px-8 py-3 text-base font-semibold">
+          <Button
+            asChild
+            className="glass-button px-8 py-3 text-base font-semibold"
+          >
             <a href="#gallery">{strings.hero.ctaPrimary}</a>
           </Button>
           <Button
             asChild
             className="glass-button border-none bg-primary px-8 py-3 text-base font-semibold text-primary-foreground shadow-glow"
           >
-            <a href={getWhatsAppLink(strings.hero.heading)} target="_blank" rel="noreferrer">
+            <a
+              href={getWhatsAppLink(strings.hero.heading)}
+              target="_blank"
+              rel="noreferrer"
+            >
               {strings.hero.ctaSecondary}
             </a>
           </Button>
         </div>
-        <p className="max-w-xl text-sm text-muted-foreground">{strings.hero.note}</p>
+        <p className="max-w-xl text-sm text-muted-foreground">
+          {strings.hero.note}
+        </p>
 
-        <div ref={statsRef} className="grid gap-6 rounded-3xl bg-white/30 p-6 shadow-soft backdrop-blur-2xl sm:grid-cols-2">
+        <div
+          ref={statsRef}
+          className="grid gap-6 rounded-3xl bg-white/30 p-6 shadow-soft backdrop-blur-2xl sm:grid-cols-2"
+        >
           {stats.map((item) => (
             <motion.div
               key={item.id}

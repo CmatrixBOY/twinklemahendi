@@ -21,7 +21,9 @@ export type LanguageContextValue = {
   setHasChosenLanguage: Dispatch<SetStateAction<boolean>>;
 };
 
-const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextValue | undefined>(
+  undefined,
+);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<LanguageCode>(fallbackLanguage);
@@ -53,11 +55,21 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const value = useMemo<LanguageContextValue>(
-    () => ({ language, setLanguage, hasChosenLanguage, ready, setHasChosenLanguage }),
-    [language, setLanguage, hasChosenLanguage, ready]
+    () => ({
+      language,
+      setLanguage,
+      hasChosenLanguage,
+      ready,
+      setHasChosenLanguage,
+    }),
+    [language, setLanguage, hasChosenLanguage, ready],
   );
 
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
 export const useLanguage = () => {

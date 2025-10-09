@@ -30,7 +30,10 @@ export const languageOptions: Array<{
   },
 ];
 
-export const localize = (language: LanguageCode, text: LocalizedText): string => {
+export const localize = (
+  language: LanguageCode,
+  text: LocalizedText,
+): string => {
   if (text[language]) {
     return text[language];
   }

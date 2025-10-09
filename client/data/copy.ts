@@ -153,11 +153,13 @@ export const copy: Record<LanguageCode, CopySections> = {
     },
     footer: {
       signature: "© 2025 Twinkle Batliwala – Crafted with love & henna.",
-      rights: "All artistry and content are protected. Kindly request permission for reuse.",
+      rights:
+        "All artistry and content are protected. Kindly request permission for reuse.",
     },
     languageModal: {
       title: "Choose your language",
-      subtitle: "Welcome! Select how you'd like to experience Twinkle's world of mehndi.",
+      subtitle:
+        "Welcome! Select how you'd like to experience Twinkle's world of mehndi.",
       button: "Continue",
       reminder: "You can change this anytime from the menu.",
     },
@@ -248,7 +250,8 @@ export const copy: Record<LanguageCode, CopySections> = {
     },
     languageModal: {
       title: "अपनी भाषा चुनें",
-      subtitle: "स्वागत है! बताइए कि आप ट्विंकल की दुनिया को किस भाषा में देखना चाहेंगे।",
+      subtitle:
+        "स्वागत है! बताइए कि आप ट्विंकल की दुनिया को किस भाषा में देखना चाहेंगे।",
       button: "आगे बढ़ें",
       reminder: "आप इसे कभी भी मेनू से बदल सकते हैं।",
     },
@@ -339,7 +342,8 @@ export const copy: Record<LanguageCode, CopySections> = {
     },
     languageModal: {
       title: "તમારી ભાષા પસંદ કરો",
-      subtitle: "સ્વાગત છે! ટ્વિંકલની દુનિયાનો અનુભવ કઈ ભાષામાં કરશો તે પસંદ કરો.",
+      subtitle:
+        "સ્વાગત છે! ટ્વિંકલની દુનિયાનો અનુભવ કઈ ભાષામાં કરશો તે પસંદ કરો.",
       button: "આગળ વધો",
       reminder: "તમે આને ક્યારેય પણ મેનુમાંથી બદલી શકો છો.",
     },

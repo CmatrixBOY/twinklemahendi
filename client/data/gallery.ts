@@ -1,8 +1,19 @@
 import type { LocalizedText } from "@/lib/i18n";
 
-export type GalleryCategory = "bridal" | "engagement" | "festival" | "kids" | "custom";
+export type GalleryCategory =
+  | "bridal"
+  | "engagement"
+  | "festival"
+  | "kids"
+  | "custom";
 export type BudgetLevel = "classic" | "signature" | "premium" | "luxury";
-export type OccasionType = "wedding" | "sangeet" | "festival" | "baby-shower" | "eid" | "party";
+export type OccasionType =
+  | "wedding"
+  | "sangeet"
+  | "festival"
+  | "baby-shower"
+  | "eid"
+  | "party";
 export type ComplexityLevel = "minimal" | "ornate" | "intricate" | "playful";
 
 export type GalleryItem = {
