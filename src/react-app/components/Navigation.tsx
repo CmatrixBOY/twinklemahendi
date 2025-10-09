@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Home, Image, Star, MessageCircle, HelpCircle } from 'lucide-react';
+import {Home, Image, Star, MessageCircle, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
@@ -12,7 +12,6 @@ const navItems = [
 ];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   
   const isHomePage = location.pathname === '/';
