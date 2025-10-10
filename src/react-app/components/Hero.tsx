@@ -118,7 +118,7 @@ export default function Hero() {
               <div className="aspect-square bg-gradient-to-br from-pistachio-light to-pistachio-soft rounded-2xl flex items-center justify-center text-olive/30 font-playfair relative overflow-hidden">
                 {/* Placeholder for artist image */}
                 <div className="absolute inset-2 md:inset-4 bg-gradient-to-br from-pistachio-deep/20 to-blush/20 rounded-xl flex items-center justify-center">
-                  <img src="/public/profile/pro.jpeg" alt="Artist Photo" />
+                  <img src="./profile/pro.jpeg" alt="Artist Photo" />
                   
                   {/* <div className="text-center">
                     <Sparkles className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-2 md:mb-4 text-pistachio-deep" />
@@ -150,7 +150,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator - Hidden on mobile due to bottom nav */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
@@ -163,7 +163,7 @@ export default function Hero() {
         >
           <ArrowDown className="w-6 h-6 text-olive" />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }

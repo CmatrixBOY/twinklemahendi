@@ -17,7 +17,7 @@ export default function Home() {
       <LanguageSelector />
       <Navigation />
       <main>
-        <div className='pt-[120px] md:pt-30 lg:pt-10'>
+        <div className='pt-[10px] md:pt-24 lg:pt-24'>
           <Hero />
         </div>
         <Gallery />
