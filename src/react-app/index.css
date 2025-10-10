@@ -6,7 +6,6 @@
     display: none;
 }
 
-
 #google_translate_element .goog-logo-link {
     display: none !important;
 }
@@ -38,6 +37,8 @@ body {
   --pistachio-light: #D8F3DC;
   --pistachio-soft: #B7E4C7;
   --pistachio-deep: #95D5B2;
+  --pistachio-dark: #407357;
+
   --blush-accent: #FFD6BA;
   --text-olive: #2F3E34;
   --glass-bg: rgba(255, 255, 255, 0.25);
@@ -45,7 +46,7 @@ body {
 }
 
 body {
-  background: linear-gradient(135deg, var(--pistachio-light), var(--pistachio-soft));
+  background: var(--pistachio-soft);
   min-height: 100vh;
   overflow-x: hidden;
   /* Mobile optimization */

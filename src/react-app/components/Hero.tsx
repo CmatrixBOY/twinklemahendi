@@ -10,7 +10,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-0 md:pb-0">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-0 md:pb-0 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -23,6 +23,7 @@ export default function Hero() {
           <rect width="100%" height="100%" fill="url(#henna-pattern)" className="text-pistachio-deep"/>
         </svg>
       </div>
+
 
       <div className="container mx-auto px-4 md:px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -49,7 +50,7 @@ export default function Hero() {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-olive mb-4 md:mb-6 leading-tight"
             >
-              <span className="font-dancing text-pistachio-deep block text-2xl sm:text-3xl md:text-4xl mb-1 md:mb-2">
+              <span className="font-dancing text-[#407357] block text-2xl sm:text-3xl md:text-4xl mb-1 md:mb-2">
                 Twinkle Batliwala
               </span>
               <span className="block text-responsive">Bringing Art to Your Hands</span>

@@ -10,6 +10,7 @@ export default {
         pistachio: {
           light: '#D8F3DC',
           soft: '#B7E4C7',
+          dark:'#407357',
           deep: '#95D5B2',
         },
         blush: '#FFD6BA',

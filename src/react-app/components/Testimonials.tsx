@@ -116,7 +116,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto mb-12"
+          className="glass rounded-3xl p-8 md:p-10 lg:p-12 max-w-4xl mx-auto mb-12"
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
@@ -189,7 +189,7 @@ export default function Testimonials() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
         >
           {testimonials.slice(0, 3).map((testimonial, index) => (
             <motion.div
@@ -224,8 +224,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
         >
-          <div className="glass rounded-xl p-6 text-center">
-            <div className="font-playfair text-3xl font-bold text-pistachio-deep mb-2">500+</div>
+          <div className="glass rounded-xl p-4 md:p-6 text-center">
             <div className="text-olive/70">Happy Clients</div>
           </div>
           <div className="glass rounded-xl p-6 text-center">

@@ -12,7 +12,7 @@ import ScrollToTop from '@/react-app/components/ScrollToTop';
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-auto">
+    <div className="">
       <FloatingParticles />
       <LanguageSelector />
       <Navigation />

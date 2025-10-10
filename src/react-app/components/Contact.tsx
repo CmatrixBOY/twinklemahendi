@@ -33,7 +33,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-12 md:py-20 px-4 sm:px-6"> {/* Adjusted vertical padding and horizontal padding for mobile */}
+    <section id="contact" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8"> {/* Adjusted vertical padding and horizontal padding for mobile */}
       <div className="container mx-auto">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -50,7 +50,7 @@ export default function Contact() {
         </motion.div>
 
         {/* The main grid switches from one column (default) to two columns on large screens (lg) */}
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12"> 
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12"> 
           {/* Contact Information */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -58,7 +58,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="glass rounded-2xl p-6 sm:p-8"> {/* Reduced padding slightly for mobile */}
+            <div className="glass rounded-2xl p-6 md:p-8"> {/* Reduced padding slightly for mobile */}
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-olive mb-6">Contact Information</h3>
               
               <div className="space-y-6">
@@ -106,7 +106,7 @@ export default function Contact() {
             </div>
 
             {/* Social Media */}
-            <div className="glass rounded-2xl p-6 sm:p-8">
+            <div className="glass rounded-2xl p-6 md:p-8">
               <h3 className="font-playfair text-xl font-bold text-olive mb-6">Follow Me</h3>
               <div className="flex space-x-3 sm:space-x-4"> {/* Adjusted spacing for mobile */}
                 <button className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
@@ -125,7 +125,7 @@ export default function Contact() {
             </div>
 
             {/* Quick Booking */}
-            <div className="glass rounded-2xl p-6 sm:p-8">
+            <div className="glass rounded-2xl p-6 md:p-8">
               <h3 className="font-playfair text-xl font-bold text-olive mb-4">Quick Booking</h3>
               <p className="text-olive/80 text-sm sm:text-base mb-4">
                 For immediate booking and faster response, contact me directly via WhatsApp
@@ -149,7 +149,7 @@ export default function Contact() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="glass rounded-2xl p-6 sm:p-8"> {/* Reduced padding slightly for mobile */}
+            <div className="glass rounded-2xl p-6 md:p-8"> {/* Reduced padding slightly for mobile */}
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-olive mb-6">Send Message</h3>
               
               <form onSubmit={handleFormSubmit} className="space-y-5 sm:space-y-6"> {/* Reduced vertical space for mobile */}

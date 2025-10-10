@@ -32,7 +32,7 @@ export default function Navigation() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="fixed top-0 left-0 right-0 z-50 hidden md:block mr-40 ml-40 "
+        className="fixed  top-0 left-0 right-0 z-50 hidden lg:block mr-40 ml-40 "
       >
         <div className="glass m-4 rounded-2xl px-8 py-4">
           <div className="flex items-center justify-between">
@@ -91,7 +91,7 @@ export default function Navigation() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="fixed bottom-0 left-0 right-0 md:hidden z-50 mobile-safe"
+        className="fixed bottom-0 left-0 right-0 lg:hidden z-50 mobile-safe"
       >
         <div className="glass rounded-t-3xl px-2 py-3 border-t-2 border-white/30">
           <div className="flex justify-around items-center max-w-sm mx-auto">
@@ -140,7 +140,7 @@ export default function Navigation() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 md:hidden z-40 mobile-safe-top mr-10 ml-40"
+      className="fixed top-0 left-0 right-0 lg:hidden z-40 mobile-safe-top mr-6 ml-40"
       >
         <div className="glass m-2 rounded-2xl px-4 py-3 flex items-center  justify-between text-center">
 
@@ -148,7 +148,7 @@ export default function Navigation() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring" }}
-            className="font-dancing text-xl font-bold text-olive"
+            className="font-dancing text-xl font-bold text-olive "
             >
             Twinkle Batliwala
           </motion.div>

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Heart, Instagram, Facebook, MessageCircle, Mail, Phone, MapPin } from 'lucide-react';
+import { Heart, Instagram, Facebook, MessageCircle, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 px-6 border-t border-pistachio-light/30 mb-40">
+    <footer className="py-16 mb-38 border-t border-pistachio-light/40 overflow-hidden">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
@@ -83,10 +83,10 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-pistachio-deep" />
                 <span>+91 98765 43210</span>
               </div>
-              <div className="flex items-center space-x-3">
+              {/* <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-pistachio-deep" />
-                <span>twinkle.batliwala@gmail.com</span>
-              </div>
+                <span className="text-xm" >twinkle.batliwala@gmail.com</span>
+              </div> */}
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-pistachio-deep" />
                 <span>Mumbai & Surrounding Areas</span>
