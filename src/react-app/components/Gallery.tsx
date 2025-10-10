@@ -108,7 +108,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-12 md:py-16 lg:py-20 px-3 md:px-4 lg:px-6 mobile-safe">
+    <section id="gallery" className="py-12 mt-10 md:py-16 lg:py-20 px-3 md:px-4 lg:px-6 mobile-safe">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           initial={isMobile ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}

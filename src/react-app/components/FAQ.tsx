@@ -98,7 +98,7 @@ export default function FAQ() {
               >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-pistachio-light rounded-full flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-pistachio-deep" />
+                    <item.icon className="w-6 h-6 text-pistachio-dark" />
                   </div>
                   <h3 className="font-semibold text-olive text-lg">{item.question}</h3>
                 </div>

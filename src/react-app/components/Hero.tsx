@@ -10,22 +10,22 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-0 md:pb-0 overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-24 pb-20 md:pt-0 md:pb-0 overflow">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="henna-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M50,10 Q60,20 50,30 Q40,20 50,10 M30,50 Q40,40 50,50 Q40,60 30,50 M70,50 Q80,40 90,50 Q80,60 70,50" 
-                    fill="none" stroke="currentColor" strokeWidth="0.5"/>
+              <path d="M50,10 Q60,20 50,30 Q40,20 50,10 M30,50 Q40,40 50,50 Q40,60 30,50 M70,50 Q80,40 90,50 Q80,60 70,50"
+                fill="none" stroke="currentColor" strokeWidth="0.5" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#henna-pattern)" className="text-pistachio-deep"/>
+          <rect width="100%" height="100%" fill="url(#henna-pattern)" className="text-pistachio-deep" />
         </svg>
       </div>
 
 
-      <div className="container mx-auto px-4 md:px-6 z-10">
+      <div className="container mx-auto px-4 md:px-6 z-20">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Text Content */}
           <motion.div
@@ -62,7 +62,7 @@ export default function Hero() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="text-sm sm:text-base md:text-lg lg:text-xl text-olive/80 mb-6 md:mb-8 leading-relaxed px-2 md:px-0"
             >
-              Transforming special moments into timeless memories with intricate henna designs. 
+              Transforming special moments into timeless memories with intricate henna designs.
               From bridal ceremonies to festive celebrations, every pattern tells a unique story.
             </motion.p>
 
@@ -70,7 +70,7 @@ export default function Hero() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.1, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12 px-2 md:px-0"
+              className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12 px-2 md:px-0 items-center justify-center"
             >
               <a href="/gallery" className="glass glass-hover px-6 md:px-8 py-3 md:py-4 rounded-2xl font-semibold text-olive pistachio-glow group inline-block mobile-tap">
                 <span className="flex items-center justify-center space-x-2 text-sm md:text-base">
@@ -78,10 +78,10 @@ export default function Hero() {
                   <ArrowDown className="w-4 md:w-5 h-4 md:h-5 group-hover:animate-bounce" />
                 </span>
               </a>
-              
-              <button className="bg-pistachio-deep hover:bg-pistachio-soft transition-colors px-6 md:px-8 py-3 md:py-4 rounded-2xl font-semibold text-olive mobile-tap text-sm md:text-base">
+
+              {/* <button className="bg-pistachio-deep hover:bg-pistachio-soft transition-colors px-6 md:px-8 py-3 md:py-4 rounded-2xl font-semibold text-olive mobile-tap text-sm md:text-base">
                 Book Consultation
-              </button>
+              </button> */}
             </motion.div>
 
             {/* Stats */}
@@ -89,7 +89,7 @@ export default function Hero() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 px-2 md:px-0"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 px-2 md:px-0 z-20"
             >
               {stats.map((stat, index) => (
                 <motion.div
@@ -99,7 +99,7 @@ export default function Hero() {
                   transition={{ delay: 1.5 + index * 0.1, type: "spring" }}
                   className="glass rounded-xl p-3 md:p-4 text-center glass-hover mobile-tap"
                 >
-                  <stat.icon className="w-5 md:w-6 h-5 md:h-6 text-pistachio-deep mx-auto mb-1 md:mb-2" />
+                  <stat.icon className="w-5 md:w-6 h-5 md:h-6 text-pistachio-dark mx-auto mb-1 md:mb-2" />
                   <div className="font-playfair text-lg md:text-2xl font-bold text-olive">{stat.value}</div>
                   <div className="text-xs md:text-sm text-olive/70">{stat.label}</div>
                 </motion.div>
@@ -118,11 +118,13 @@ export default function Hero() {
               <div className="aspect-square bg-gradient-to-br from-pistachio-light to-pistachio-soft rounded-2xl flex items-center justify-center text-olive/30 font-playfair relative overflow-hidden">
                 {/* Placeholder for artist image */}
                 <div className="absolute inset-2 md:inset-4 bg-gradient-to-br from-pistachio-deep/20 to-blush/20 rounded-xl flex items-center justify-center">
-                  <div className="text-center">
+                  <img src="/public/profile/pro.jpeg" alt="Artist Photo" />
+                  
+                  {/* <div className="text-center">
                     <Sparkles className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-2 md:mb-4 text-pistachio-deep" />
                     <p className="text-base md:text-lg font-medium text-olive">Artist Photo</p>
                     <p className="text-sm text-olive/60">Coming Soon</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -152,7 +154,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

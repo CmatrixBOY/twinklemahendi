@@ -225,18 +225,19 @@ export default function Testimonials() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
         >
           <div className="glass rounded-xl p-4 md:p-6 text-center">
+            <div className="font-playfair text-3xl font-bold text-pistachio-dark mb-2">500+</div>
             <div className="text-olive/70">Happy Clients</div>
           </div>
           <div className="glass rounded-xl p-6 text-center">
-            <div className="font-playfair text-3xl font-bold text-pistachio-deep mb-2">99%</div>
+            <div className="font-playfair text-3xl font-bold text-pistachio-dark mb-2">99%</div>
             <div className="text-olive/70">Satisfaction Rate</div>
           </div>
           <div className="glass rounded-xl p-6 text-center">
-            <div className="font-playfair text-3xl font-bold text-pistachio-deep mb-2">4.9</div>
+            <div className="font-playfair text-3xl font-bold text-pistachio-dark mb-2">4.9</div>
             <div className="text-olive/70">Average Rating</div>
           </div>
           <div className="glass rounded-xl p-6 text-center">
-            <div className="font-playfair text-3xl font-bold text-pistachio-deep mb-2">1000+</div>
+            <div className="font-playfair text-3xl font-bold text-pistachio-dark mb-2">1000+</div>
             <div className="text-olive/70">Designs Created</div>
           </div>
         </motion.div>
