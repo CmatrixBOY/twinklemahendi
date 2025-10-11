@@ -303,7 +303,7 @@ export default function GalleryPage() {
 
       // Tags filter
       const tagsMatch = selectedTags.length === 0 ||
-        selectedTags.every(tag => design.tags.includes(tag));
+        selectedTags.some(tag => design.tags.includes(tag));
 
       // Search filter
       const searchMatch = searchQuery === '' ||
