@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Clock, DollarSign, MessageCircle, X, Eye } from 'lucide-react';
 import { isMobile } from 'react-device-detect';
 
-const categories = ['All', 'Bridal', 'Engagement', 'Festival', 'Kids', 'Custom'];
+const categories = ['All', 'Bridal', 'Engagement', 'sliders', 'Baby shower', 'Minimalist'];
 
 const designs = [
   {
@@ -29,7 +29,7 @@ const designs = [
   {
     id: 3,
     title: 'Festival Joy',
-    category: 'Festival',
+    category: 'siders',
     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
     time: '1-2 hours',
     price: '₹800-1200',
@@ -39,7 +39,7 @@ const designs = [
   {
     id: 4,
     title: 'Kids Delight',
-    category: 'Kids',
+    category: 'Baby shower',
     image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
     time: '30-45 mins',
     price: '₹300-500',
@@ -49,7 +49,7 @@ const designs = [
   {
     id: 5,
     title: 'Custom Creation',
-    category: 'Custom',
+    category: 'Minimalist',
     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
     time: '2-5 hours',
     price: '₹1000-4000',

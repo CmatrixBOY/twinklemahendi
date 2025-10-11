@@ -13,17 +13,17 @@ const categories = [
   { id: 'all', name: 'All Designs', count: 24 },
   { id: 'bridal', name: 'Bridal', count: 8 },
   { id: 'engagement', name: 'Engagement', count: 6 },
-  { id: 'festival', name: 'Festival', count: 5 },
-  { id: 'kids', name: 'Kids', count: 3 },
-  { id: 'custom', name: 'Custom', count: 2 }
+  { id: 'sliders', name: 'Sliders', count: 5 },
+  { id: 'babyShower', name: 'Baby Shower', count: 3 },
+  { id: 'minimalist', name: 'Minimalist', count: 2 }
 ];
 
 const priceRanges = [
-  { id: 'all', name: 'All Prices', min: 0, max: 10000 },
+  { id: 'all', name: 'All Prices', min: 0, max: 12000 },
   { id: 'budget', name: '₹300-800', min: 300, max: 800 },
-  { id: 'mid', name: '₹800-2000', min: 800, max: 2000 },
-  { id: 'premium', name: '₹2000-3500', min: 2000, max: 3500 },
-  { id: 'luxury', name: '₹3500+', min: 3500, max: 10000 }
+  { id: 'mid', name: '₹900-2500', min: 900, max: 2500 },
+  { id: 'premium', name: '₹3000-5000', min: 3000, max: 5000 },
+  { id: 'luxury', name: '₹5000+', min: 5500, max: 12000 }
 ];
 
 const complexityLevels = [
@@ -672,18 +672,18 @@ export default function GalleryPage() {
                         </div>
 
                         {/* Tags Filter */}
-                        <div>
+                        <div className='pb-6'>
                           <h3 className="font-semibold text-olive mb-3 flex items-center">
                             <Tag size={16} className="mr-2" />
                             Tags ({selectedTags.length} selected)
                           </h3>
-                          <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
+                          <div className="flex flex-wrap gap-2 p-7">
                             {allTags.map((tag) => (
                               <button
                                 key={tag}
                                 onClick={() => toggleTag(tag)}
                                 className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-xs ${selectedTags.includes(tag)
-                                    ? 'bg-pistachio-deep text-olive shadow-lg'
+                                    ? 'bg-pistachio-deep text-olive shadow-md'
                                     : 'glass glass-hover text-olive'
                                   }`}
                               >
