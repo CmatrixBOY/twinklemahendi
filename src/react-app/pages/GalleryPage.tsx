@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Heart, Clock, IndianRupee, MessageCircle, X, Eye, ArrowLeft, Filter, Grid, List,
+  Heart, Clock, IndianRupee, MessageCircle, X, ArrowLeft, Filter, Grid, List,Eye,
   Sliders, Search, SortAsc, SortDesc, Star, TrendingUp, RotateCcw, Tag
 } from 'lucide-react';
 import { Link } from 'react-router';
-import MobileOptimizedModal from '../components/MobileOptimizedModal';
+
 import MobilePullToRefresh from '../components/MobilePullToRefresh';
-import MobileSwipeGestures, { useMobileDetection } from '../components/MobileSwipeGestures';
+
 
 const categories = [
   { id: 'all', name: 'All Designs', count: 20 },
@@ -66,328 +66,7 @@ const quickFilters = [
   { id: 'bridal-special', name: 'Bridal Special', icon: Heart, filters: { category: 'bridal' } }
 ];
 
-const designs = [
-  {
-    id: 1,
-    title: "Grand Royal Bridal Masterpiece",
-    category: "bridal",
-    image: "./Mahendi_images/Bridal/bridal_1_5000.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "5000-6000",
-    priceMin: 5000,
-    priceMax: 6000,
-    complexity: "High",
-    description: "An exquisite, high-coverage Traditional bridal design featuring detailed Human Figures, graceful Peacock, and serene Lotus motifs. This Elegant and Heavy Work pattern is a statement for a royal-themed wedding.",
-    tags: ["Traditional", "Elegant", "Human Figure", "Heavy Work", "Bridal"],
-    popularity: 98,
-    dateAdded: "2024-02-10"
-  },
-  {
-    id: 2,
-    title: "Deluxe Traditional Bridal Design",
-    category: "bridal",
-    image: "./Mahendi_images/Bridal/bridal_2_8000.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "8000-9000",
-    priceMin: 8000,
-    priceMax: 9000,
-    complexity: "High",
-    description: "A premium, fully loaded Traditional bridal pattern with highly intricate Heavy Work and detailed Human Figure elements. This luxurious application ensures a breathtaking look for your special day.",
-    tags: ["Traditional", "Human Figure", "Heavy Work", "Bridal"],
-    popularity: 99,
-    dateAdded: "2025-02-20"
-  },
-  {
-    id: 3,
-    title: "Classic Full Bridal Mehendi",
-    category: "bridal",
-    image: "./Mahendi_images/Bridal/bridal_3_4500.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "4500-5500",
-    priceMin: 4500,
-    priceMax: 5500,
-    complexity: "High",
-    description: "A beautiful, full-hand Traditional bridal design incorporating detailed Human Figures. This Heavy Work masterpiece provides a rich, classic aesthetic for the bride.",
-    tags: ["Traditional", "Human Figure", "Heavy Work", "Bridal"],
-    popularity: 97,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 4,
-    title: "Romantic Engagement Ceremony Design",
-    category: "engagement",
-    image: "./Mahendi_images/Engagement/engagement_1_2500.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "4500-5500",
-    priceMin: 4500,
-    priceMax: 5500,
-    complexity: "High",
-    description: "An extensive and Romantic Traditional design, suitable for an Engagement, featuring detailed Human Figure work, delicate Lotus motifs, and overall Heavy Work for an impactful look.",
-    tags: ["Romantic", "Traditional", "Human Figure", "Heavy Work", "Lotus", "Delicate", "Engagement"],
-    popularity: 92,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 5,
-    title: "Traditional Baby Shower Henna",
-    category: "babyShower",
-    image: "./Mahendi_images/BabyShower/babyshower_1_3500.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "3500-4000",
-    priceMin: 3500,
-    priceMax: 4000,
-    complexity: "High",
-    description: "A beautiful and Special Traditional design perfect for a Baby Shower. Features Delicate work, serene Lotus flowers, and symbolic Human Figures to celebrate the new arrival.",
-    tags: ["Baby Shower", "Traditional", "Human Figure", "Special", "Engagement", "Lotus", "Delicate"],
-    popularity: 88,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 6,
-    title: "Delicate Baby Shower Motif",
-    category: "babyShower",
-    image: "./Mahendi_images/BabyShower/babyshower_2_3500.webp",
-    time: "4-5 hours",
-    timeMinutes: 300,
-    price: "3500-4000",
-    priceMin: 3500,
-    priceMax: 4000,
-    complexity: "High",
-    description: "A Special Traditional and Delicate design for a Baby Shower, focusing on graceful Lotus patterns. This full application offers a soft, elegant look for the expectant mother.",
-    tags: ["Baby Shower", "Traditional", "Special", "Engagement", "Lotus", "Delicate"],
-    popularity: 87,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 7,
-    title: "Affordable Modern Sider Pattern",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_1_300.webp",
-    time: "1-2 hours",
-    timeMinutes: 60,
-    price: "300-400",
-    priceMin: 300,
-    priceMax: 400,
-    complexity: "Low",
-    description: "A quick, Affordable, and Mordan Deliciate design, focusing on a single, elegant Lotus chain. Perfect for small occasions or guests.",
-    tags: ["Affordable", "Mordan", "Lotus", "Delicate"],
-    popularity: 70,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 8,
-    title: "Minimal Elegant Sider Mehendi",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_2_300.webp",
-    time: "1-2 hours",
-    timeMinutes: 60,
-    price: "300-400",
-    priceMin: 300,
-    priceMax: 400,
-    complexity: "Low",
-    description: "An Affordable, Minimal, and Elegant Mordan pattern. Features a graceful Peacock and Delicate Lotus elements, ideal for a quick, stylish application on the side of the hand.",
-    tags: ["Affordable", "Minimal", "Peacock", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 75,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 9,
-    title: "Heavy Traditional Sider Design",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_3_1000.webp",
-    time: "3-4 hours",
-    timeMinutes: 200,
-    price: "1000-1500",
-    priceMin: 1000,
-    priceMax: 1500,
-    complexity: "Medium",
-    description: "A moderately priced, Traditional design with significant Heavy Work coverage. Features elegant Peacock and Delicate Lotus motifs, offering a fuller look without being a full bridal pattern.",
-    tags: ["Heavy Work", "Traditional", "Affordable", "Peacock", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 80,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 10,
-    title: "Quick Modern Peacock Sider",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_4_450.webp",
-    time: "1-2 hours",
-    timeMinutes: 60,
-    price: "450-500",
-    priceMin: 250,
-    priceMax: 500,
-    complexity: "Low",
-    description: "A budget-friendly, Mordan design focused on a central Peacock motif. A Delicate and quick-to-apply option for a stylish effect.",
-    tags: ["Affordable", "Peacock", "Mordan", "Lotus", "Delicate"],
-    popularity: 72,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 11,
-    title: "Elegant Mordan Sider Vine",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_5_500.webp",
-    time: "1-2 hours",
-    timeMinutes: 60,
-    price: "500-600",
-    priceMin: 500,
-    priceMax: 600,
-    complexity: "Low",
-    description: "An Affordable, Elegant, and Mordan vine-style design. Uses Delicate Lotus elements for a flowing, contemporary look on the side of the hand.",
-    tags: ["Affordable", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 71,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 12,
-    title: "Peacock & Lotus Sider",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_6_700.webp",
-    time: "1-2 hours",
-    timeMinutes: 120,
-    price: "700-800",
-    priceMin: 700,
-    priceMax: 800,
-    complexity: "Low",
-    description: "An Affordable and Elegant Mordan design featuring a beautiful blend of Peacock and Delicate Lotus motifs. A high-impact sider with balanced coverage.",
-    tags: ["Affordable", "Peacock", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 77,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 13,
-    title: "Minimal Traditional Sider",
-    category: "siders",
-    image: "./Mahendi_images/Sider/sider_7_500.webp",
-    time: "1-2 hours",
-    timeMinutes: 120,
-    price: "500-600",
-    priceMin: 500,
-    priceMax: 600,
-    complexity: "Low",
-    description: "An Affordable, Minimal, and Elegant design blending Traditional and Mordan elements. Features delicate Lotus work for a clean, sophisticated look.",
-    tags: ["Affordable", "Minimal", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 73,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 14,
-    title: "Heavy Work Hand & Arm Design",
-    category: "heavysiders",
-    image: "./Mahendi_images/HeavySider/heavy_sider_1_2000.webp",
-    time: "2-4 hours",
-    timeMinutes: 220,
-    price: "2000-2500",
-    priceMin: 2000,
-    priceMax: 2500,
-    complexity: "Medium",
-    description: "An extensive Heavy Work design that extends beyond the hand (Heavy Sider). Features a Traditional, Bold mix of Human Figures, Peacock, and Delicate Lotus for a striking, full-arm statement.",
-    tags: ["Human Figure", "Peacock", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate", "Heavy Work", "Bold"],
-    popularity: 85,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 15,
-    title: "Affordable Traditional Heavy Sider",
-    category: "heavysiders",
-    image: "./Mahendi_images/HeavySider/heavy_sider_2_750.webp",
-    time: "2-4 hours",
-    timeMinutes: 240,
-    price: "750-800",
-    priceMin: 750,
-    priceMax: 800,
-    complexity: "Medium",
-    description: "A more Affordable Heavy Sider option with a focus on Traditional and Elegant Peacock and Lotus motifs. Offers significant coverage without the premium price.",
-    tags: ["Affordable", "Peacock", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 81,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 16,
-    title: "Budget-Friendly Heavy Coverage",
-    category: "heavysiders",
-    image: "./Mahendi_images/HeavySider/heavy_sider_3_700.webp",
-    time: "1-2 hours",
-    timeMinutes: 120,
-    price: "700-800",
-    priceMin: 700,
-    priceMax: 800,
-    complexity: "Medium",
-    description: "An Affordable, relatively quick Heavy Work design (Heavy Sider) blending Traditional and Mordan styles. Elegant Lotus elements are featured in this full-look pattern.",
-    tags: ["Affordable", "Heavy Work", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 82,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 17,
-    title: "Romantic Modern Heavy Sider",
-    category: "heavysiders",
-    image: "./Mahendi_images/HeavySider/heavy_sider_4_1000.webp",
-    time: "3-4 hours",
-    timeMinutes: 200,
-    price: "1000-1500",
-    priceMin: 1000,
-    priceMax: 1500,
-    complexity: "Medium",
-    description: "A detailed Heavy Work design (Heavy Sider) that is Romantic and Modern, while maintaining Traditional elegance. Delicate Lotus work provides a contemporary yet classic feel.",
-    tags: ["Heavy Work", "Romantic", "Modern", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 84,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 18,
-    title: "Traditional Festival Mehendi",
-    category: "festival",
-    image: "./Mahendi_images/Festival/festival_1_900.webp",
-    time: "2-3 hours",
-    timeMinutes: 150,
-    price: "900-1000",
-    priceMin: 900,
-    priceMax: 1000,
-    complexity: "Medium",
-    description: "A full, Affordable, and Elegant design perfect for a Festival. This pattern blends Traditional and Modern (Mordan) styles with Delicate Lotus work.",
-    tags: ["Affordable", "Modern", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 68,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 19,
-    title: "Simple Modern Festival Henna",
-    category: "festival",
-    image: "./Mahendi_images/Festival/festival_2_450.webp",
-    time: "1-2 hours",
-    timeMinutes: 120,
-    price: "450-500",
-    priceMin: 450,
-    priceMax: 500,
-    complexity: "Low",
-    description: "A quick, Affordable, and Elegant design ideal for a Festival. This pattern uses Delicate Lotus motifs in a Traditional yet Modern style for a balanced, lighter look.",
-    tags: ["Affordable", "Modern", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 65,
-    dateAdded: "2025-01-22"
-  },
-  {
-    id: 20,
-    title: "Ultra-Minimalist Finger/Wrist Design",
-    category: "minimalist",
-    image: "./Mahendi_images/minimal/minimal_1_200.webp",
-    time: "1-2 hours",
-    timeMinutes: 60,
-    price: "200-300",
-    priceMin: 200,
-    priceMax: 300,
-    complexity: "Low",
-    description: "Our most Affordable and quickest option. This Minimalist design is Modern and Delicate, featuring simple Lotus elements, perfect for a subtle, everyday look or a small motif.",
-    tags: ["Affordable", "Modern", "Traditional", "Elegant", "Mordan", "Lotus", "Delicate"],
-    popularity: 55,
-    dateAdded: "2025-01-22"
-  }
-]
+import { designs } from '../data/designs';
 
 
 export default function GalleryPage() {
@@ -400,13 +79,11 @@ export default function GalleryPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('popular');
-  const [selectedDesign, setSelectedDesign] = useState<typeof designs[0] | null>(null);
-  const [likedDesigns, setLikedDesigns] = useState<number[]>([]);
+  
+  const [likedDesigns, setLikedDesigns] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-
-  const { isMobile } = useMobileDetection();
 
   const filteredAndSortedDesigns = useMemo(() => {
     let filtered = designs.filter(design => {
@@ -508,7 +185,7 @@ export default function GalleryPage() {
     );
   };
 
-  const toggleLike = (designId: number) => {
+  const toggleLike = (designId: string) => {
     setLikedDesigns(prev =>
       prev.includes(designId)
         ? prev.filter(id => id !== designId)
@@ -529,21 +206,7 @@ export default function GalleryPage() {
     clearAllFilters();
   };
 
-  const handleSwipeLeft = () => {
-    if (selectedDesign) {
-      const currentIndex = filteredAndSortedDesigns.findIndex(d => d.id === selectedDesign.id);
-      const nextIndex = (currentIndex + 1) % filteredAndSortedDesigns.length;
-      setSelectedDesign(filteredAndSortedDesigns[nextIndex]);
-    }
-  };
-
-  const handleSwipeRight = () => {
-    if (selectedDesign) {
-      const currentIndex = filteredAndSortedDesigns.findIndex(d => d.id === selectedDesign.id);
-      const prevIndex = currentIndex === 0 ? filteredAndSortedDesigns.length - 1 : currentIndex - 1;
-      setSelectedDesign(filteredAndSortedDesigns[prevIndex]);
-    }
-  };
+  
 
   const getComplexityColor = (complexity: string) => {
     switch (complexity) {
@@ -925,11 +588,13 @@ export default function GalleryPage() {
                     ? "relative aspect-square overflow-hidden"
                     : "relative w-full sm:w-48 aspect-square overflow-hidden flex-shrink-0"
                   }>
+                    <Link to={`/design/${design.id}`}>
                     <img
                       src={design.image}
                       alt={design.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+                  </Link>
 
                     {/* Watermark */}
                     <div className="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -948,12 +613,13 @@ export default function GalleryPage() {
                         <Heart size={14} fill={likedDesigns.includes(design.id) ? 'currentColor' : 'none'} />
                       </button>
 
-                      <button
-                        onClick={() => setSelectedDesign(design)}
-                        className="w-7 md:w-8 h-7 md:h-8 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors mobile-tap"
-                      >
-                        <Eye size={14} />
-                      </button>
+                      <Link to={`/design/${design.id}`}>
+                        <button
+                          className="w-7 md:w-8 h-7 md:h-8 rounded-full glass flex items-center justify-center text-olive hover:text-pistachio-deep transition-colors mobile-tap"
+                        >
+                          <Eye size={14} />
+                        </button>
+                      </Link>
                     </div>
 
                     {/* Complexity Badge */}
@@ -1008,6 +674,14 @@ export default function GalleryPage() {
                       <MessageCircle size={16} />
                       <span>Book Now</span>
                     </button>
+                    <Link to={`/design/${design.id}`} className="w-full">
+                      <button
+                        className="w-full mt-2 bg-gray-200 hover:bg-gray-300 transition-colors py-2 md:py-3 rounded-lg font-medium text-gray-700 flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
+                      >
+                        <Eye size={16} />
+                        <span>See More details</span>
+                      </button>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
@@ -1049,86 +723,7 @@ export default function GalleryPage() {
             </motion.div>
           )}
 
-          {/* Mobile Optimized Design Detail Modal */}
-          <MobileOptimizedModal
-            isOpen={!!selectedDesign}
-            onClose={() => setSelectedDesign(null)}
-            fullScreen={isMobile}
-          >
-            {selectedDesign && (
-              <MobileSwipeGestures
-                onSwipeLeft={handleSwipeLeft}
-                onSwipeRight={handleSwipeRight}
-                className="h-full"
-              >
-                <div className="relative">
-                  <img
-                    src={selectedDesign.image}
-                    alt={selectedDesign.title}
-                    className="w-full aspect-square object-cover"
-                  />
-
-                  {/* Navigation indicators for mobile */}
-                  {isMobile && (
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                      <div className="glass rounded-full px-3 py-1 text-white text-xs">
-                        Swipe to see more designs
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Popularity Badge */}
-                  <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-full text-sm flex items-center space-x-2">
-                    <Star size={16} fill="currentColor" />
-                    <span>{selectedDesign.popularity}% Popular</span>
-                  </div>
-                </div>
-
-                <div className="p-4 md:p-6">
-                  <h3 className="font-playfair text-xl md:text-2xl font-bold text-pistachio-deep mb-2">
-                    {selectedDesign.title}
-                  </h3>
-                  <p className="text-pistachio-deep mb-4 text-sm md:text-base">{selectedDesign.description}</p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
-                    {selectedDesign.tags.map((tag) => (
-                      <span key={tag} className="bg-pistachio-light text-olive text-xs md:text-sm px-2 md:px-3 py-1 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <Clock className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
-                      <div className="text-xs md:text-sm text-olive/80">Duration</div>
-                      <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.time}</div>
-                    </div>
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <IndianRupee className="w-4 md:w-5 h-4 md:h-5 text-pistachio-deep mx-auto mb-1" />
-                      <div className="text-xs md:text-sm text-olive/80">Price Range</div>
-                      <div className="font-semibold text-olive text-xs md:text-sm">{selectedDesign.price}</div>
-                    </div>
-                    <div className="glass rounded-lg p-2 md:p-3 text-center">
-                      <div className="text-xs md:text-sm text-olive/80 mb-1">Complexity</div>
-                      <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getComplexityColor(selectedDesign.complexity)}`}>
-                        {selectedDesign.complexity}
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => handleBookDesign(selectedDesign)}
-                    className="w-full bg-pistachio-deep hover:bg-pistachio-soft transition-colors py-3 md:py-4 rounded-lg font-semibold text-olive flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
-                  >
-                    <MessageCircle size={18} />
-                    <span>Book This Design</span>
-                  </button>
-                </div>
-              </MobileSwipeGestures>
-            )}
-          </MobileOptimizedModal>
+          
         </div>
       </div>
     </MobilePullToRefresh>

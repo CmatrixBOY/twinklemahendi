@@ -8,7 +8,7 @@ import Contact from '@/react-app/components/Contact';
 import Footer from '@/react-app/components/Footer';
 import LanguageSelector from '@/react-app/components/LanguageSelector';
 import WhatsAppButton from '@/react-app/components/WhatsAppButton';
-import ScrollToTop from '@/react-app/components/ScrollToTop';
+
 
 export default function Home() {
   return (
@@ -28,7 +28,7 @@ export default function Home() {
       <Footer />
       <div className="fixed bottom-20 right-5 z-50 flex flex-col gap-4">
         <WhatsAppButton />
-        <ScrollToTop />
+        
       </div>
     </div>
   );
