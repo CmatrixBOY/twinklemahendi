@@ -7,7 +7,7 @@ const navItems = [
   { icon: Image, label: 'Gallery', href: '/gallery' },
   { icon: Star, label: 'Reviews', href: '#reviews' },
   { icon: MessageCircle, label: 'Contact', href: '#contact' },
-  { icon: HelpCircle, label: 'FAQ', href: '#faq' },
+  { icon: HelpCircle, label: 'FAQ/Help', href: '#faq' },
 ];
 
 export default function Navigation() {

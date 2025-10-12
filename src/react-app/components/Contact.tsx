@@ -50,7 +50,7 @@ export default function Contact() {
         </motion.div>
 
         {/* The main grid switches from one column (default) to two columns on large screens (lg) */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12"> 
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -60,7 +60,7 @@ export default function Contact() {
           >
             <div className="glass rounded-2xl p-6 md:p-8"> {/* Reduced padding slightly for mobile */}
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-olive mb-6">Contact Information</h3>
-              
+
               <div className="space-y-6">
                 {/* Each contact item is already responsive */}
                 <div className="flex items-start space-x-4"> {/* Changed to items-start for better alignment on wrap/small text */}
@@ -151,7 +151,7 @@ export default function Contact() {
           >
             <div className="glass rounded-2xl p-6 md:p-8"> {/* Reduced padding slightly for mobile */}
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-olive mb-6">Send Message</h3>
-              
+
               <form onSubmit={handleFormSubmit} className="space-y-5 sm:space-y-6"> {/* Reduced vertical space for mobile */}
                 <div>
                   <label className="block text-olive font-medium mb-1 sm:mb-2 text-sm sm:text-base">Full Name *</label>
@@ -179,16 +179,38 @@ export default function Contact() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-olive font-medium mb-1 sm:mb-2 text-sm sm:text-base">Event Date</label>
-                  <input
-                    type="date"
-                    name="eventDate"
-                    value={formData.eventDate}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 sm:py-3 glass rounded-lg border border-pistachio-light focus:border-pistachio-deep focus:outline-none text-olive text-sm sm:text-base"
-                  />
+                <div className="w-full">
+                  <label className="block text-olive font-medium mb-1 sm:mb-2 text-sm sm:text-base">
+                    Event Date
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="date"
+                      name="eventDate"
+                      value={formData.eventDate}
+                      onChange={handleInputChange}
+                      className="
+        w-full 
+        px-4 py-2 sm:py-3 
+        rounded-lg 
+        border border-pistachio-light 
+        bg-white/30 backdrop-blur-md 
+        focus:border-pistachio-deep 
+        focus:outline-none 
+        text-olive 
+        text-sm sm:text-base
+        appearance-none 
+        [-webkit-appearance:none] 
+        [color-scheme:light]
+      "
+                      style={{
+                        WebkitAppearance: "none",
+                        MozAppearance: "textfield",
+                      }}
+                    />
+                  </div>
                 </div>
+
 
                 <div>
                   <label className="block text-olive font-medium mb-1 sm:mb-2 text-sm sm:text-base">Design Type</label>
@@ -200,6 +222,7 @@ export default function Contact() {
                   >
                     <option value="bridal">Bridal</option>
                     <option value="engagement">Engagement</option>
+                    <option value="kids">Baby Shower</option>
                     <option value="festival">Festival</option>
                     <option value="kids">Kids</option>
                     <option value="custom">Custom</option>
@@ -219,7 +242,7 @@ export default function Contact() {
                 </div>
 
                 {/* Excellent use of flex-col (default) and sm:flex-row (for larger screens) */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4"> 
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button
                     type="button"
                     onClick={handleWhatsAppSubmit}
@@ -228,7 +251,7 @@ export default function Contact() {
                     <MessageCircle className="w-5 h-5" />
                     <span>Send via WhatsApp</span>
                   </button>
-                  
+
                   {/* <button
                     type="submit"
                     className="flex-1 bg-pistachio-deep hover:bg-pistachio-soft text-olive py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors text-sm sm:text-base"
@@ -241,7 +264,7 @@ export default function Contact() {
 
               <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-pistachio-light/30 rounded-lg"> {/* Reduced padding and margin for mobile */}
                 <p className="text-olive/80 text-xs sm:text-sm"> {/* Reduced text size for mobile */}
-                  <strong>Note:</strong> For faster response and immediate booking confirmation, I recommend using WhatsApp. 
+                  <strong>Note:</strong> For faster response and immediate booking confirmation, I recommend using WhatsApp.
                   I typically respond within 2-3 hours during business hours.
                 </p>
               </div>

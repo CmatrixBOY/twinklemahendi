@@ -2,7 +2,7 @@ import Navigation from '@/react-app/components/Navigation';
 import FloatingParticles from '@/react-app/components/FloatingParticles';
 import Hero from '@/react-app/components/Hero';
 import Gallery from '@/react-app/components/Gallery';
-import Testimonials from '@/react-app/components/Testimonials';
+// import Testimonials from '@/react-app/components/Testimonials';
 import FAQ from '@/react-app/components/FAQ';
 import Contact from '@/react-app/components/Contact';
 import Footer from '@/react-app/components/Footer';
@@ -21,7 +21,7 @@ export default function Home() {
           <Hero />
         </div>
         <Gallery />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <FAQ />
         <Contact />
       </main>

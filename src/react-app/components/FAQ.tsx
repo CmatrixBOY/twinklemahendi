@@ -19,7 +19,7 @@ const faqData = [
     id: 3,
     icon: MapPin,
     question: 'Do you travel for appointments?',
-    answer: 'Yes! I provide home service within 25km of the city center. Travel charges may apply for distant locations. I also have a studio for those who prefer to visit. Group bookings at your location are welcome for weddings and parties.'
+    answer: 'Yes! I provide home service within 15km of the city center. Travel charges may apply for distant locations. Group bookings at your location are welcome for weddings and parties.'
   },
   {
     id: 4,
@@ -156,9 +156,9 @@ export default function FAQ() {
               >
                 WhatsApp Us
               </button>
-              <button className="glass glass-hover px-8 py-3 rounded-lg font-semibold text-olive">
+              {/* <button className="glass glass-hover px-8 py-3 rounded-lg font-semibold text-olive">
                 Schedule Consultation
-              </button>
+              </button> */}
             </div>
           </div>
         </motion.div>
