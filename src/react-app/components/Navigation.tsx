@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import {Home, Image, Star, MessageCircle, HelpCircle } from 'lucide-react';
+import {Home, Image, MessageCircle, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { icon: Home, label: 'Home', href: '#home' },
   { icon: Image, label: 'Gallery', href: '/gallery' },
-  { icon: Star, label: 'Reviews', href: '#reviews' },
+  // { icon: Star, label: 'Reviews', href: '#reviews' },
   { icon: MessageCircle, label: 'Contact', href: '#contact' },
   { icon: HelpCircle, label: 'FAQ/Help', href: '#faq' },
 ];
@@ -91,9 +91,9 @@ export default function Navigation() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="fixed bottom-0 left-0 right-0 lg:hidden z-50 mobile-safe"
+        className="fixed bottom-2 left-2 right-2 lg:hidden z-50 mobile-safe"
       >
-        <div className="glass rounded-t-3xl px-2 py-3 border-t-2 border-white/30">
+        <div className="glass rounded-3xl px-2 py-3 border-t-2 border-white/30">
           <div className="flex justify-around items-center max-w-sm mx-auto">
             {navItems.map((item, index) => {
               const isAnchor = item.href.startsWith('#');

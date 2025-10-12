@@ -3,68 +3,68 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Clock, DollarSign, MessageCircle, X, Eye } from 'lucide-react';
 import { isMobile } from 'react-device-detect';
 
-const categories = ['All', 'Bridal', 'Engagement', 'sliders', 'Baby shower', 'Minimalist'];
+const categories = ['All', 'Bridal', 'Engagement', 'Siders', 'Baby shower', 'Minimalist'];
 
 const designs = [
   {
     id: 1,
-    title: 'Royal Bridal Design',
+    title: 'Classic Full Bridal Mehendi',
     category: 'Bridal',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
-    time: '3-4 hours',
-    price: '₹2500-3500',
+    image: '/Mahendi_images/Bridal/bridal_3_4500.webp',
+    time: '4-5 hours',
+    price: '₹4500-5500',
     complexity: 'High',
-    description: 'Intricate traditional bridal pattern with peacock motifs'
+    description: 'A stunning full-hand bridal design with intricate human figures, offering a rich and traditional look.'
   },
   {
     id: 2,
-    title: 'Engagement Elegance',
+    title: 'Romantic Engagement Ceremony Design',
     category: 'Engagement',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
-    time: '2-3 hours',
-    price: '₹1500-2000',
-    complexity: 'Medium',
-    description: 'Delicate engagement design with rose patterns'
+    image: '/Mahendi_images/Engagement/engagement_1_2500.webp',
+    time: '4-5 hours',
+    price: '₹4500-5500',
+    complexity: 'High',
+    description: 'A romantic traditional design with human figures, lotus motifs, and rich detailing.'
   },
   {
     id: 3,
-    title: 'Festival Joy',
-    category: 'siders',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
-    time: '1-2 hours',
-    price: '₹800-1200',
+    title: 'Traditional Festival Mehendi',
+    category: 'Festival',
+    image: '/Mahendi_images/Festival/festival_1_900.webp',
+    time: '2-3 hours',
+    price: '₹900-1000',
     complexity: 'Medium',
-    description: 'Vibrant festival design with traditional motifs'
+    description: 'An elegant, affordable festival design blending traditional and modern styles with lotus motifs.'
   },
   {
     id: 4,
-    title: 'Kids Delight',
+    title: 'Traditional Baby Shower Henna',
     category: 'Baby shower',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
-    time: '30-45 mins',
-    price: '₹300-500',
-    complexity: 'Low',
-    description: 'Simple and fun designs perfect for children'
+    image: '/Mahendi_images/BabyShower/babyshower_1_3500.webp',
+    time: '4-5 hours',
+    price: '₹3500-4000',
+    complexity: 'High',
+    description: 'A special traditional baby shower design with delicate lotus motifs and symbolic human figures.'
   },
   {
     id: 5,
-    title: 'Custom Creation',
+    title: 'Ultra-Minimalist Finger/Wrist Design',
     category: 'Minimalist',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&h=100&fit=crop',
-    time: '2-5 hours',
-    price: '₹1000-4000',
+    image: '/Mahendi_images/minimal/minimal_1_200.webp',
+    time: '1-2 hours',
+    price: '₹200-300',
     complexity: 'Variable',
-    description: 'Personalized design based on your preferences'
+    description: 'Our most affordable, quick, and minimalist design with delicate lotus motifs for a subtle everyday look.'
   },
   {
     id: 6,
-    title: 'Minimalist Modern',
-    category: 'Engagement',
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=100&h=100&fit=crop',
+    title: 'Peacock & Lotus Sider',
+    category: 'Siders',
+    image: '/Mahendi_images/Sider/sider_6_700.webp',
     time: '1-2 hours',
-    price: '₹1200-1800',
+    price: '₹700-800',
     complexity: 'Low',
-    description: 'Contemporary minimal design for modern brides'
+    description: 'Affordable Mordan design with peacock and lotus motifs.'
   }
 ];
 

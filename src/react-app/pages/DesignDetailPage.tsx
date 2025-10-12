@@ -45,7 +45,7 @@ export default function DesignDetailPage() {
   };
 
   return (
-    <div className=" p-4">
+    <div className="pt-[50px] p-4 ">
       <FloatingParticles />
       <LanguageSelector />
       <Navigation />

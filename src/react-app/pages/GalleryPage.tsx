@@ -676,7 +676,7 @@ export default function GalleryPage() {
                     </button>
                     <Link to={`/design/${design.id}`} className="w-full">
                       <button
-                        className="w-full mt-2 bg-gray-200 hover:bg-gray-300 transition-colors py-2 md:py-3 rounded-lg font-medium text-gray-700 flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
+                        className="w-full mt-2 bg-white hover:bg-gray-300 transition-colors py-2 md:py-3 rounded-lg font-medium text-gray-700 flex items-center justify-center space-x-2 text-sm md:text-base mobile-tap"
                       >
                         <Eye size={16} />
                         <span>See More details</span>
