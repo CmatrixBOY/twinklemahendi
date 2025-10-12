@@ -10,7 +10,7 @@ import {
   Star,
   X
 } from "lucide-react";
-import Navigation from "@/react-app/components/Navigation";
+// import Navigation from "@/react-app/components/Navigation";
 import FloatingParticles from "@/react-app/components/FloatingParticles";
 import LanguageSelector from "@/react-app/components/LanguageSelector";
 import Footer from "@/react-app/components/Footer";
@@ -48,7 +48,7 @@ export default function DesignDetailPage() {
     <div className="pt-[50px] p-4 ">
       <FloatingParticles />
       <LanguageSelector />
-      <Navigation />
+      {/* <Navigation /> */}
 
       <main className="pt-16 md:pt-20 lg:pt-24 pb-20 md:pb-8 px-3 md:px-4 lg:px-6 mobile-safe">
         <div className="container mx-auto max-w-6xl">

@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import {Home, Image, MessageCircle, HelpCircle } from 'lucide-react';
+import { Home, Image, MessageCircle, HelpCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
-  { icon: Home, label: 'Home', href: '#home' },
+  { icon: Home, label: 'Home', href: '/' },
   { icon: Image, label: 'Gallery', href: '/gallery' },
   // { icon: Star, label: 'Reviews', href: '#reviews' },
   { icon: MessageCircle, label: 'Contact', href: '#contact' },
@@ -12,7 +12,7 @@ const navItems = [
 
 export default function Navigation() {
   const location = useLocation();
-  
+
   const isHomePage = location.pathname === '/';
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
@@ -42,9 +42,11 @@ export default function Navigation() {
               transition={{ delay: 0.3, type: "spring" }}
               className="font-dancing text-2xl font-bold text-olive"
             >
-              Twinkle Batliwala
+              <Link to="/">
+                Twinkle Batliwala
+              </Link>
             </motion.div>
-            
+
             <div className="flex space-x-8">
               {navItems.map((item, index) => {
                 const isAnchor = item.href.startsWith('#');
@@ -140,7 +142,7 @@ export default function Navigation() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 lg:hidden z-40 mobile-safe-top mr-6 ml-40"
+        className="fixed top-0 left-0 right-0 lg:hidden z-40 mobile-safe-top mr-6 ml-40"
       >
         <div className="glass m-2 rounded-2xl px-4 py-3 flex items-center  justify-between text-center">
 
@@ -149,10 +151,12 @@ export default function Navigation() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring" }}
             className="font-dancing text-xl font-bold text-olive "
-            >
-            Twinkle Batliwala
+          >
+            <Link to="/">
+              Twinkle Batliwala
+            </Link>
           </motion.div>
-          
+
           {/* <motion.button
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
