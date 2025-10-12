@@ -118,7 +118,7 @@ export default function Hero() {
               <div className="aspect-square bg-gradient-to-br from-pistachio-light to-pistachio-soft rounded-2xl flex items-center justify-center text-olive/30 font-playfair relative overflow-hidden">
                 {/* Placeholder for artist image */}
                 <div className="absolute inset-2 md:inset-4 bg-gradient-to-br from-pistachio-deep/20 to-blush/20 rounded-xl flex items-center justify-center">
-                  <img src="./profile/pro.jpeg" alt="Artist Photo" />
+                  <img src="./profile/pro.webp" alt="Artist Photo" />
                   
                   {/* <div className="text-center">
                     <Sparkles className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-2 md:mb-4 text-pistachio-deep" />
