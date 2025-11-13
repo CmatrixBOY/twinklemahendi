@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
     const message = encodeURIComponent(
       "Hello Twinkle! I'm interested in your mehndi services. Could you please share more details?"
     );
-    const phoneNumber = "917041634002"; // Replace with actual phone number
+    const phoneNumber = "918154922104"; // Replace with actual phone number
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 

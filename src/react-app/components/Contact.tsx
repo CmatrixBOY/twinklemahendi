@@ -22,7 +22,7 @@ export default function Contact() {
     const message = encodeURIComponent(
       `Hello Twinkle! I would like to book your services.\n\nDetails:\nName: ${formData.name}\nPhone: ${formData.phone}\nEvent Date: ${formData.eventDate}\nDesign Type: ${formData.designType}\nMessage: ${formData.message}`
     );
-    const phoneNumber = "917041634002";
+    const phoneNumber = "918154922104";
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -69,7 +69,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-olive">Phone</h4>
-                    <p className="text-olive/80 text-sm sm:text-base">+91 70416 34002</p>
+                    <p className="text-olive/80 text-sm sm:text-base">+91 81549 22104</p>
                   </div>
                 </div>
 
@@ -133,7 +133,7 @@ export default function Contact() {
               <button
                 onClick={() => {
                   const message = encodeURIComponent("Hi Twinkle! ✨ ,I’m really interested in booking your mehndi services soon. Please let me know your available dates and how I can confirm the booking.");
-                  window.open(`https://wa.me/917041634002?text=${message}`, '_blank');
+                  window.open(`https://wa.me/918154922104?text=${message}`, '_blank');
                 }}
                 className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors text-sm sm:text-base"
               >
@@ -175,7 +175,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-2 sm:py-3 glass rounded-lg border border- pistachio-light focus:border-pistachio-deep focus:outline-none text-olive placeholder-olive/50 text-sm sm:text-base"
-                    placeholder="+91 70416 34002"
+                    placeholder="+91 81549 22104"
                   />
                 </div>
 

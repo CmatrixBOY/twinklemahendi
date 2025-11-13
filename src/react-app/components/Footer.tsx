@@ -35,7 +35,7 @@ export default function Footer() {
                   color: 'bg-green-500',
                   action: () => {
                     const message = encodeURIComponent("Hello Twinkle! I'm interested in your mehndi services.");
-                    window.open(`https://wa.me/917041634002?text=${message}`, '_blank');
+                    window.open(`https://wa.me/918154922104?text=${message}`, '_blank');
                   },
                 },
               ].map((item, index) => (
@@ -89,7 +89,7 @@ export default function Footer() {
             <div className="space-y-3 text-olive/80 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start space-x-3">
                 <Phone className="w-4 h-4 text-pistachio-deep" />
-                <span>+91 70416 34002</span>
+                <span>+91 81549 22104</span>
               </div>
               <div className="flex items-center justify-center sm:justify-start space-x-3">
                 <MapPin className="w-4 h-4 text-pistachio-deep" />

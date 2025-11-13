@@ -195,7 +195,7 @@ export default function GalleryPage() {
 
   const handleBookDesign = (design: typeof designs[0]) => {
     const message = encodeURIComponent(`Hello Twinkle! I loved your ${design.title}. Could you share booking details for this design?`);
-    const phoneNumber = "917041634002";
+    const phoneNumber = "918154922104";
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
